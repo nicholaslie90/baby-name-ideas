@@ -1,5 +1,6 @@
 import {
-  ORIGINS,
+  COMMON_ORIGINS,
+  ELEMENT_ORIGINS,
   ORIGIN_LABELS,
   type Gender,
   type NameStyle,
@@ -164,7 +165,7 @@ export default function ParameterForm({ value, onChange, onGenerate }: Props) {
               Etimologi <span className="field__hint">(kosong = semua)</span>
             </span>
             <div className="chips">
-              {ORIGINS.map((o) => (
+              {COMMON_ORIGINS.map((o) => (
                 <button
                   key={o}
                   type="button"
@@ -190,7 +191,7 @@ export default function ParameterForm({ value, onChange, onGenerate }: Props) {
             <button type="button" className="chip" onClick={() => applyToAll([])}>
               Campur semua etimologi
             </button>
-            {ORIGINS.map((o) => (
+            {ELEMENT_ORIGINS.map((o) => (
               <button key={o} type="button" className="chip" onClick={() => applyToAll([o])}>
                 Samakan: {ORIGIN_LABELS[o].id}
               </button>

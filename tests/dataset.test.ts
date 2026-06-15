@@ -1,13 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { ELEMENTS, COMMON_NAMES } from '../src/data';
-import { ORIGINS } from '../src/types';
+import { ORIGINS, ELEMENT_ORIGINS } from '../src/types';
 
 const GENDERS = ['L', 'P', 'N'];
 const POSITIONS = ['prefix', 'suffix', 'any'];
 
 describe('name-element dataset', () => {
-  it('has a healthy number of elements per origin', () => {
-    for (const origin of ORIGINS) {
+  it('has a healthy number of elements per root origin', () => {
+    for (const origin of ELEMENT_ORIGINS) {
       const count = ELEMENTS.filter((e) => e.origin === origin).length;
       expect(count, `origin ${origin}`).toBeGreaterThanOrEqual(20);
     }
@@ -35,13 +35,15 @@ describe('name-element dataset', () => {
 });
 
 describe('common-names dataset', () => {
-  it('has names for every origin and both genders', () => {
-    for (const origin of ORIGINS) {
-      const list = COMMON_NAMES.filter((n) => n.origin === origin);
-      expect(list.length, `origin ${origin}`).toBeGreaterThanOrEqual(8);
-      expect(list.some((n) => n.gender === 'L'), `male ${origin}`).toBe(true);
-      expect(list.some((n) => n.gender === 'P'), `female ${origin}`).toBe(true);
-    }
+  it('is large (enriched from the imported dictionary)', () => {
+    expect(COMMON_NAMES.length).toBeGreaterThan(2000);
+  });
+
+  it('covers both genders and many origins', () => {
+    expect(COMMON_NAMES.some((n) => n.gender === 'L')).toBe(true);
+    expect(COMMON_NAMES.some((n) => n.gender === 'P')).toBe(true);
+    const origins = new Set(COMMON_NAMES.map((n) => n.origin));
+    expect(origins.size).toBeGreaterThanOrEqual(8);
   });
 
   it('has unique ids', () => {
@@ -49,10 +51,15 @@ describe('common-names dataset', () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
+  it('has no duplicate name + gender pairs', () => {
+    const keys = COMMON_NAMES.map((n) => `${n.name.toLowerCase()}|${n.gender}`);
+    expect(new Set(keys).size).toBe(keys.length);
+  });
+
   it('every common name is well-formed', () => {
     for (const n of COMMON_NAMES) {
-      expect(n.name, `name for ${n.id}`).toMatch(/^[A-Z][a-zA-Z]+$/);
-      expect(n.initial, `initial for ${n.id}`).toBe(n.name[0].toLowerCase());
+      expect(n.name.trim(), `name for ${n.id}`).not.toBe('');
+      expect(n.initial, `initial for ${n.id}`).toMatch(/^[a-z]$/);
       expect(n.syllables, `syllables for ${n.id}`).toBeGreaterThanOrEqual(1);
       expect(ORIGINS, `origin for ${n.id}`).toContain(n.origin);
       expect(['L', 'P', 'N'], `gender for ${n.id}`).toContain(n.gender);

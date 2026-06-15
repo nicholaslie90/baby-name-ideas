@@ -1,4 +1,4 @@
-import { ORIGINS, ORIGIN_LABELS, type Origin, type SlotConstraint } from '../types';
+import { ELEMENT_ORIGINS, ORIGIN_LABELS, type Origin, type SlotConstraint } from '../types';
 
 interface Props {
   index: number;
@@ -43,7 +43,7 @@ export default function SyllableSlotRow({ index, slot, onChange }: Props) {
             Etimologi <span className="field__hint">(kosong = semua)</span>
           </span>
           <div className="chips">
-            {ORIGINS.map((o) => (
+            {ELEMENT_ORIGINS.map((o) => (
               <button
                 key={o}
                 type="button"

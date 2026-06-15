@@ -1,14 +1,57 @@
-/** The four etymological origin families supported in v1. */
-export type Origin = 'arab' | 'sanskerta' | 'latin' | 'ibrani';
+/** Etymological origin families. Expanded to cover the imported dictionary. */
+export type Origin =
+  | 'arab'
+  | 'sanskerta'
+  | 'latin'
+  | 'ibrani'
+  | 'yunani'
+  | 'inggris'
+  | 'keltik'
+  | 'jermanik'
+  | 'slavia'
+  | 'afrika'
+  | 'pasifik_asia'
+  | 'lainnya';
 
-export const ORIGINS: Origin[] = ['arab', 'sanskerta', 'latin', 'ibrani'];
+/** All origins (used for labels and validation). */
+export const ORIGINS: Origin[] = [
+  'arab',
+  'ibrani',
+  'yunani',
+  'latin',
+  'inggris',
+  'keltik',
+  'jermanik',
+  'sanskerta',
+  'slavia',
+  'afrika',
+  'pasifik_asia',
+  'lainnya',
+];
+
+/**
+ * Origins that have building-block roots in the ELEMENTS dataset — only these
+ * are offered in "composed" (per-syllable) mode.
+ */
+export const ELEMENT_ORIGINS: Origin[] = ['arab', 'sanskerta', 'latin', 'ibrani'];
+
+/** Origins offered in "familiar" mode (the full expanded set). */
+export const COMMON_ORIGINS: Origin[] = ORIGINS;
 
 /** Bilingual label for each origin, shown in the UI and the frame. */
 export const ORIGIN_LABELS: Record<Origin, { id: string; en: string }> = {
-  arab: { id: 'Arab / Islami', en: 'Arabic / Islamic' },
-  sanskerta: { id: 'Sanskerta & Jawa', en: 'Sanskrit & Javanese' },
-  latin: { id: 'Latin / Yunani', en: 'Latin / Greek' },
+  arab: { id: 'Arab', en: 'Arabic' },
   ibrani: { id: 'Ibrani', en: 'Hebrew' },
+  yunani: { id: 'Yunani', en: 'Greek' },
+  latin: { id: 'Latin & Roman', en: 'Latin & Romance' },
+  inggris: { id: 'Inggris', en: 'English' },
+  keltik: { id: 'Keltik', en: 'Celtic (Irish/Scottish/Welsh)' },
+  jermanik: { id: 'Jermanik', en: 'Germanic (German/Norse)' },
+  sanskerta: { id: 'Sanskerta & Hindu', en: 'Sanskrit & Hindu' },
+  slavia: { id: 'Slavia', en: 'Slavic' },
+  afrika: { id: 'Afrika', en: 'African' },
+  pasifik_asia: { id: 'Pasifik & Asia', en: 'Pacific & Asian' },
+  lainnya: { id: 'Lainnya', en: 'Other' },
 };
 
 /** L = laki-laki (male), P = perempuan (female), N = netral (neutral/unisex). */

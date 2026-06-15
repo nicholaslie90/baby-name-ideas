@@ -9,9 +9,14 @@ deploys to GitHub Pages.
 ## Features
 
 - **Two name styles:**
-  - **Umum (Familiar)** — picks an attested, recognizable given name (Cindy,
-    Elaine, Christie, Aisyah, Dewi, Daniel…) filtered by your parameters.
-  - **Unik (Composed)** — assembles a one-of-a-kind name from etymological roots.
+  - **Umum (Familiar)** — picks from **~5,200 attested given names** (enriched
+    from Lisa Shaw's *Baby Names Your Child Can Live With*) across 12 origin
+    families, filtered by your parameters. Meanings are English (the source is
+    English-only); the curated core set is fully bilingual.
+  - **Unik (Composed)** — assembles a one-of-a-kind name from etymological roots
+    (Arab, Sanskerta, Latin, Ibrani), with composed bilingual meanings.
+- **12 etymology families** in familiar mode: Arab, Ibrani, Yunani, Latin & Roman,
+  Inggris, Keltik, Jermanik, Sanskerta & Hindu, Slavia, Afrika, Pasifik & Asia, Lainnya.
 - **Parameters:** surname, gender (Laki-laki / Perempuan / Netral), number of
   syllables (2–4), and control of the initial letter (awalan) and etymology.
   In Composed mode each syllable is controlled *individually*, so you can mix
@@ -25,6 +30,13 @@ deploys to GitHub Pages.
 
 > Names are *creatively composed* from etymological roots — they are not a
 > dictionary of attested given names.
+
+## Data source
+
+The familiar-name list is enriched with names and short meaning glosses adapted
+from *Baby Names Your Child Can Live With* by Lisa Shaw (Adams Media, 2005). Only
+brief factual name/meaning data is used; the book's descriptive commentary,
+variations, and editorial prose are not included.
 
 ## Develop
 
