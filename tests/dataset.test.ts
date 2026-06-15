@@ -56,6 +56,17 @@ describe('common-names dataset', () => {
     expect(new Set(keys).size).toBe(keys.length);
   });
 
+  it('stores accurate syllable counts for well-known names', () => {
+    const expected: Record<string, number> = {
+      Grace: 1, Jane: 1, Sophia: 3, Maria: 3, Olivia: 4, Zoe: 2, Mia: 2,
+      Noah: 2, Aurora: 3, Victoria: 4, Sebastian: 4, Lucas: 2,
+    };
+    for (const [name, syl] of Object.entries(expected)) {
+      const found = COMMON_NAMES.find((n) => n.name === name);
+      if (found) expect(found.syllables, name).toBe(syl);
+    }
+  });
+
   it('every common name is well-formed', () => {
     for (const n of COMMON_NAMES) {
       expect(n.name.trim(), `name for ${n.id}`).not.toBe('');
