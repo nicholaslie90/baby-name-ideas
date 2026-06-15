@@ -1,4 +1,6 @@
 import type {
+  CommonName,
+  FamiliarRequest,
   GenerateRequest,
   GenerateResult,
   NameElement,
@@ -23,7 +25,7 @@ export function defaultRng(): () => number {
   return () => Math.random();
 }
 
-function matchesGender(el: NameElement, want: NameElement['gender']): boolean {
+function matchesGender(el: { gender: NameElement['gender'] }, want: NameElement['gender']): boolean {
   if (want === 'N') return true; // user asked for any/neutral → everything allowed
   return el.gender === want || el.gender === 'N';
 }
@@ -90,4 +92,48 @@ export function generateName(
   const origins: Origin[] = distinct(chosen.map((e) => e.origin));
 
   return { name, surname: req.surname.trim(), elements: chosen, origins };
+}
+
+/**
+ * Pick a familiar, attested given name (e.g. Cindy, Elaine, Christie) matching
+ * the gender / initial / origin filters. The syllable count is a *soft*
+ * preference: if no name has exactly that count we fall back to any count
+ * rather than failing. An empty initial means "auto" (no constraint).
+ */
+export function generateFamiliarName(
+  req: FamiliarRequest,
+  names: CommonName[],
+  rng: () => number = defaultRng(),
+): GenerateResult {
+  const wantInitial = req.initial?.toLowerCase();
+  const base = names.filter(
+    (n) =>
+      matchesGender(n, req.gender) &&
+      (!wantInitial || n.initial === wantInitial) &&
+      (!req.origins || req.origins.length === 0 || req.origins.includes(n.origin)),
+  );
+
+  if (base.length === 0) {
+    // -1 signals a familiar-style miss (no per-slot index applies).
+    return { error: 'empty-pool', slotIndex: -1 };
+  }
+
+  const preferred = base.filter((n) => n.syllables === req.syllables);
+  const chosen = pick(preferred.length > 0 ? preferred : base, rng);
+
+  const element: NameElement = {
+    id: chosen.id,
+    text: chosen.name.toLowerCase(),
+    initial: chosen.initial,
+    origin: chosen.origin,
+    gender: chosen.gender,
+    meaning: chosen.meaning,
+  };
+
+  return {
+    name: chosen.name,
+    surname: req.surname.trim(),
+    elements: [element],
+    origins: [chosen.origin],
+  };
 }

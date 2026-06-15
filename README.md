@@ -8,9 +8,15 @@ deploys to GitHub Pages.
 
 ## Features
 
+- **Two name styles:**
+  - **Umum (Familiar)** — picks an attested, recognizable given name (Cindy,
+    Elaine, Christie, Aisyah, Dewi, Daniel…) filtered by your parameters.
+  - **Unik (Composed)** — assembles a one-of-a-kind name from etymological roots.
 - **Parameters:** surname, gender (Laki-laki / Perempuan / Netral), number of
-  syllables (2–4), and *per-syllable* control of the initial letter (awalan) and
-  etymology — so you can mix origins across syllables ("campuran etimologi").
+  syllables (2–4), and control of the initial letter (awalan) and etymology.
+  In Composed mode each syllable is controlled *individually*, so you can mix
+  origins across syllables ("campuran etimologi"). **Leaving an awalan empty
+  auto-generates that part.**
 - **Origins (v1):** Arab/Islami, Sanskerta & Jawa, Latin/Yunani, Ibrani.
 - **Composed meaning** built from each chosen root, shown bilingually.
 - **Four frame styles:** Klasik Elegan, Modern Lembut, Botani, Royal Gelap.

@@ -33,10 +33,21 @@ export default function ResultPanel({ result, onRegenerate }: Props) {
     return (
       <div className="panel result">
         <div className="error">
-          Tidak ada kandidat untuk <strong>suku kata {result.slotIndex + 1}</strong>. Longgarkan
-          awalan atau etimologinya.
-          <br />
-          No candidates for syllable {result.slotIndex + 1} — relax its initial letter or etymology.
+          {result.slotIndex >= 0 ? (
+            <>
+              Tidak ada kandidat untuk <strong>suku kata {result.slotIndex + 1}</strong>. Longgarkan
+              awalan atau etimologinya.
+              <br />
+              No candidates for syllable {result.slotIndex + 1} — relax its initial letter or
+              etymology.
+            </>
+          ) : (
+            <>
+              Tidak ada nama umum yang cocok. Longgarkan awalan atau etimologinya.
+              <br />
+              No matching common name — relax the initial letter or etymology.
+            </>
+          )}
         </div>
         <button className="btn btn--ghost" onClick={onRegenerate}>
           ↻ Coba lagi · Try again

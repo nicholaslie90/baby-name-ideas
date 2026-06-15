@@ -29,6 +29,21 @@ export interface NameElement {
   position?: Position;
 }
 
+/** A curated, attested given name used by the "familiar" name style. */
+export interface CommonName {
+  id: string;
+  name: string;
+  /** Normalized lowercase first letter of `name`. */
+  initial: string;
+  syllables: number;
+  origin: Origin;
+  gender: Gender;
+  meaning: { id: string; en: string };
+}
+
+/** Which generation style the user picked. */
+export type NameStyle = 'familiar' | 'composed';
+
 /** Per-syllable constraints chosen by the user. */
 export interface SlotConstraint {
   /** Optional desired initial letter (lowercase). Empty = any. */
@@ -41,6 +56,17 @@ export interface GenerateRequest {
   surname: string;
   gender: Gender;
   slots: SlotConstraint[];
+}
+
+export interface FamiliarRequest {
+  surname: string;
+  gender: Gender;
+  /** Preferred syllable count (soft — falls back to any count if none match). */
+  syllables: number;
+  /** Optional desired first letter (lowercase). Empty = auto. */
+  initial?: string;
+  /** Optional subset of origins. Empty/undefined = all. */
+  origins?: Origin[];
 }
 
 export interface GeneratedName {

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import ParameterForm, { type FormState } from './components/ParameterForm';
 import ResultPanel from './components/ResultPanel';
-import { ELEMENTS } from './data';
-import { generateName } from './lib/generator';
+import { ELEMENTS, COMMON_NAMES } from './data';
+import { generateName, generateFamiliarName } from './lib/generator';
 import type { GenerateResult } from './types';
 
 const INITIAL_FORM: FormState = {
+  nameStyle: 'familiar',
   surname: '',
   gender: 'N',
   slots: [{}, {}],
@@ -16,7 +17,24 @@ export default function App() {
   const [result, setResult] = useState<GenerateResult | null>(null);
 
   function generate() {
-    setResult(generateName({ surname: form.surname, gender: form.gender, slots: form.slots }, ELEMENTS));
+    if (form.nameStyle === 'familiar') {
+      setResult(
+        generateFamiliarName(
+          {
+            surname: form.surname,
+            gender: form.gender,
+            syllables: form.slots.length,
+            initial: form.familiarInitial,
+            origins: form.familiarOrigins,
+          },
+          COMMON_NAMES,
+        ),
+      );
+    } else {
+      setResult(
+        generateName({ surname: form.surname, gender: form.gender, slots: form.slots }, ELEMENTS),
+      );
+    }
   }
 
   return (
