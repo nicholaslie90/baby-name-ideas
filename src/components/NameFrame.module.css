@@ -1,0 +1,180 @@
+/* ---- Base frame (shared by all themes) ---- */
+.frame {
+  position: relative;
+  width: 480px;
+  height: 600px;
+  max-width: 100%;
+  padding: 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 6px;
+  font-family: var(--font-serif);
+}
+
+.inner {
+  position: absolute;
+  inset: 18px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.kicker {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.name {
+  font-family: var(--font-script);
+  line-height: 1;
+  font-size: 76px;
+  margin: 4px 0 6px;
+  word-break: break-word;
+}
+
+.surname {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.divider {
+  width: 120px;
+  height: 1px;
+  margin: 10px 0 16px;
+  position: relative;
+}
+
+.divider::before {
+  content: '❧';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  background: transparent;
+  padding: 0 8px;
+}
+
+.meaningId {
+  font-size: 23px;
+  font-style: italic;
+  line-height: 1.35;
+  margin: 0 0 6px;
+  max-width: 90%;
+}
+
+.meaningEn {
+  font-size: 16px;
+  line-height: 1.3;
+  opacity: 0.78;
+  margin: 0 0 16px;
+  max-width: 88%;
+}
+
+.etymology {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.disclaimer {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  font-size: 8.5px;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+  font-family: var(--font-ui);
+}
+
+/* ---- Theme: Elegant classic (cream + gold) ---- */
+.elegant {
+  color: #4a3b22;
+  background:
+    radial-gradient(120% 100% at 50% 0%, #fffdf7 0%, #f7eedd 55%, #efe2c8 100%);
+}
+.elegant .inner {
+  border: 1.5px solid #c9a96a;
+  box-shadow: inset 0 0 0 4px #fffdf7, inset 0 0 0 5.5px #d9bd86;
+}
+.elegant .kicker,
+.elegant .etymology { color: #a9863f; }
+.elegant .divider { background: linear-gradient(90deg, transparent, #c9a96a, transparent); }
+.elegant .divider::before { color: #b08d57; }
+
+/* ---- Theme: Soft modern (pastel watercolor) ---- */
+.modern {
+  color: #4b4a57;
+  background:
+    radial-gradient(80% 70% at 20% 15%, #ffe3ec 0%, transparent 60%),
+    radial-gradient(80% 70% at 85% 25%, #dbeafe 0%, transparent 60%),
+    radial-gradient(90% 80% at 60% 100%, #e7f6e9 0%, transparent 60%),
+    #fbfafc;
+}
+.modern .inner { border: 1px solid rgba(120, 120, 140, 0.18); }
+.modern .kicker,
+.modern .etymology { color: #8a7d97; }
+.modern .divider { background: linear-gradient(90deg, transparent, #c7b6d6, transparent); }
+.modern .divider::before { color: #b29bc7; }
+
+/* ---- Theme: Botanical (floral wreath, earthy greens) ---- */
+.botanical {
+  color: #33402f;
+  background:
+    radial-gradient(70% 60% at 50% 45%, #fbfdf6 0%, #eef4e3 70%, #e3edd2 100%);
+}
+.botanical .inner {
+  border: 1.5px solid #7d9b5e;
+  box-shadow: inset 0 0 0 4px #fbfdf6, inset 0 0 0 5px #aac083;
+}
+.botanical .kicker,
+.botanical .etymology { color: #5d7a45; }
+.botanical .divider { background: linear-gradient(90deg, transparent, #7d9b5e, transparent); }
+.botanical .divider::before { content: '❀'; color: #6f9150; }
+.botanical .leafTop,
+.botanical .leafBottom {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 26px;
+  color: #6f9150;
+  letter-spacing: 6px;
+}
+.botanical .leafTop { top: 30px; }
+.botanical .leafBottom { bottom: 28px; transform: translateX(-50%) rotate(180deg); }
+
+/* ---- Theme: Royal dark (navy + gold foil) ---- */
+.royal {
+  color: #f3e7c9;
+  background:
+    radial-gradient(120% 100% at 50% 0%, #1d3a4f 0%, #142a3a 55%, #0e2230 100%);
+}
+.royal .inner {
+  border: 1.5px solid #d8b86a;
+  box-shadow: inset 0 0 0 4px #0e2230, inset 0 0 0 5.5px #b9954f;
+}
+.royal .kicker,
+.royal .etymology { color: #e3c884; }
+.royal .name { color: #f6ecd2; text-shadow: 0 1px 0 rgba(0,0,0,0.25); }
+.royal .surname { color: #e3c884; }
+.royal .divider { background: linear-gradient(90deg, transparent, #d8b86a, transparent); }
+.royal .divider::before { color: #e3c884; }
+.royal .meaningEn { opacity: 0.7; }
+
+/* Hide the botanical leaf ornaments on non-botanical themes */
+.leafTop,
+.leafBottom { display: none; }
+.botanical .leafTop,
+.botanical .leafBottom { display: block; }
