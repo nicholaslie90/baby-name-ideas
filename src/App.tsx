@@ -134,6 +134,15 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterSig]);
 
+  // Generate a first name automatically on initial load (once).
+  const didInit = useRef(false);
+  useEffect(() => {
+    if (didInit.current) return;
+    didInit.current = true;
+    generate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Surname is applied live to the displayed frame without needing to regenerate.
   const current =
     cursor >= 0 && cursor < history.length
