@@ -85,7 +85,7 @@ export interface CommonName {
 }
 
 /** Which generation style the user picked. */
-export type NameStyle = 'familiar' | 'composed';
+export type NameStyle = 'familiar' | 'composed' | 'meaning';
 
 /** Per-syllable constraints chosen by the user. */
 export interface SlotConstraint {
@@ -112,6 +112,15 @@ export interface FamiliarRequest {
   origins?: Origin[];
 }
 
+export interface MeaningRequest {
+  surname: string;
+  gender: Gender;
+  /** Number of words (name parts) in the generated full name. */
+  words: number;
+  /** Raw meaning query, e.g. "joy, happy, glee" (comma/space separated). */
+  query: string;
+}
+
 export interface GeneratedName {
   name: string;
   surname: string;
@@ -125,6 +134,8 @@ export interface GenerateError {
   error: 'empty-pool';
   /** Index of the slot (0-based) whose constraints matched nothing. */
   slotIndex: number;
+  /** Optional mode-specific bilingual message shown in place of the default. */
+  message?: { id: string; en: string };
 }
 
 export type GenerateResult = GeneratedName | GenerateError;

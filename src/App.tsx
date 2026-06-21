@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import ParameterForm, { type FormState } from './components/ParameterForm';
 import ResultPanel from './components/ResultPanel';
-import { ELEMENTS, COMMON_NAMES } from './data';
-import { generateName, generateFamiliarName } from './lib/generator';
+import { ELEMENTS, COMMON_NAMES, MEANING_POOL } from './data';
+import { generateName, generateFamiliarName, generateByMeaning } from './lib/generator';
 import { isGenerateError, type GeneratedName, type GenerateError, type GenerateResult } from './types';
 
 const INITIAL_FORM: FormState = {
@@ -42,6 +42,17 @@ export default function App() {
           origins: form.familiarOrigins,
         },
         COMMON_NAMES,
+      );
+    }
+    if (form.nameStyle === 'meaning') {
+      return generateByMeaning(
+        {
+          surname: form.surname,
+          gender: form.gender,
+          words: wordCount,
+          query: form.meaningQuery ?? '',
+        },
+        MEANING_POOL,
       );
     }
     return generateName(
@@ -120,6 +131,7 @@ export default function App() {
     gender: form.gender,
     initial: form.familiarInitial ?? '',
     origins: form.familiarOrigins ?? [],
+    meaningQuery: form.meaningQuery ?? '',
     slots: form.slots,
     // Whether a surname exists changes the generated word count (but typing
     // within an existing surname does not — that updates the frame live).

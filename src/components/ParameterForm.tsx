@@ -19,12 +19,21 @@ export interface FormState {
   familiarInitial?: string;
   /** Familiar-mode: allowed origins (empty = all). */
   familiarOrigins?: Origin[];
+  /** Meaning-mode: meaning words to search, e.g. "joy, happy, glee". */
+  meaningQuery?: string;
 }
 
 const NAME_STYLES: { value: NameStyle; label: string; hint: string }[] = [
   { value: 'familiar', label: 'Umum', hint: 'mis. Cindy, Elaine, Christie' },
   { value: 'composed', label: 'Unik', hint: 'dirangkai dari akar kata' },
+  { value: 'meaning', label: 'Arti', hint: 'mis. joy, happy, glee' },
 ];
+
+const STYLE_HINTS: Record<NameStyle, string> = {
+  familiar: 'Nama umum yang dikenal · ' + NAME_STYLES[0].hint,
+  composed: 'Nama unik · ' + NAME_STYLES[1].hint,
+  meaning: 'Cari dari arti · ' + NAME_STYLES[2].hint,
+};
 
 const GENDER_OPTIONS: { value: Gender; label: string }[] = [
   { value: 'L', label: 'Laki-laki' },
@@ -42,6 +51,7 @@ interface Props {
 
 export default function ParameterForm({ value, onChange, onGenerate }: Props) {
   const familiar = value.nameStyle === 'familiar';
+  const meaning = value.nameStyle === 'meaning';
   const familiarOrigins = value.familiarOrigins ?? [];
   const surname = value.surname.trim();
   // The surname is one of the chosen words, so one fewer word is generated.
@@ -99,7 +109,7 @@ export default function ParameterForm({ value, onChange, onGenerate }: Props) {
           ))}
         </div>
         <p className="field__hint" style={{ marginTop: '0.35rem' }}>
-          {familiar ? 'Nama umum yang dikenal · ' + NAME_STYLES[0].hint : 'Nama unik · ' + NAME_STYLES[1].hint}
+          {STYLE_HINTS[value.nameStyle]}
         </p>
       </div>
 
@@ -155,7 +165,24 @@ export default function ParameterForm({ value, onChange, onGenerate }: Props) {
         )}
       </div>
 
-      {familiar ? (
+      {meaning ? (
+        <div className="field">
+          <label className="field__label" htmlFor="meaning-query">
+            Kata arti <span className="field__hint">/ Meaning words — pisahkan dengan koma</span>
+          </label>
+          <input
+            id="meaning-query"
+            type="text"
+            placeholder="mis. joy, happy, glee"
+            value={value.meaningQuery ?? ''}
+            onChange={(e) => onChange({ ...value, meaningQuery: e.target.value })}
+          />
+          <p className="field__hint" style={{ marginTop: '0.35rem' }}>
+            Nama dirangkai dari kata yang artinya mengandung salah satu kata ini ·
+            names are built from parts meaning any of these words
+          </p>
+        </div>
+      ) : familiar ? (
         <>
           <div className="field">
             <label className="field__label" htmlFor="familiar-initial">

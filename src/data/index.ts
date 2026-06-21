@@ -1,4 +1,5 @@
 import type { CommonName, NameElement } from '../types';
+import { asElement } from '../lib/generator';
 import arab from './elements.arab.json';
 import sanskerta from './elements.sanskerta.json';
 import latin from './elements.latin.json';
@@ -30,3 +31,10 @@ function mergeCommonNames(): CommonName[] {
 }
 
 export const COMMON_NAMES: CommonName[] = mergeCommonNames();
+
+/**
+ * Combined candidate pool for reverse search by meaning: every etymology root
+ * plus every attested given name (converted to the element shape). Both carry
+ * bilingual meanings, so they search and render uniformly.
+ */
+export const MEANING_POOL: NameElement[] = [...ELEMENTS, ...COMMON_NAMES.map(asElement)];

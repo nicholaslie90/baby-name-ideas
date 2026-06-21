@@ -34,7 +34,13 @@ export default function ResultPanel({
     return (
       <div className="panel result">
         <div className="error">
-          {error.slotIndex >= 0 ? (
+          {error.message ? (
+            <>
+              {error.message.id}
+              <br />
+              {error.message.en}
+            </>
+          ) : error.slotIndex >= 0 ? (
             <>
               Tidak ada kandidat untuk <strong>kata {error.slotIndex + 1}</strong>. Longgarkan
               awalan atau etimologinya.

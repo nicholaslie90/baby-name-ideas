@@ -8,13 +8,17 @@ deploys to GitHub Pages.
 
 ## Features
 
-- **Two name styles:**
+- **Three name styles:**
   - **Umum (Familiar)** — joins **attested given names** (from a ~5,200-name set
     enriched from Lisa Shaw's *Baby Names Your Child Can Live With*) across 12
     origin families into a multi-word name. Meanings are English (the source is
     English-only); the curated core set is fully bilingual.
   - **Unik (Composed)** — assembles a one-of-a-kind name from etymological roots
     (Arab, Sanskerta, Latin, Ibrani), with composed bilingual meanings.
+  - **Arti (By meaning)** — *reverse search*: type meaning words (e.g.
+    `joy, happy, glee`) and get names whose meaning contains **any** of them.
+    Matches are drawn from **both** the attested-name set and the etymology
+    roots, comparing against the Indonesian **and** English glosses.
 - **12 etymology families** in familiar mode: Arab, Ibrani, Yunani, Latin & Roman,
   Inggris, Keltik, Jermanik, Sanskerta & Hindu, Slavia, Afrika, Pasifik & Asia, Lainnya.
 - **Parameters:** surname, gender (Laki-laki / Perempuan / Netral), **number of

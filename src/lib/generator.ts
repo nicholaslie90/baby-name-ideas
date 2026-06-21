@@ -3,6 +3,7 @@ import type {
   FamiliarRequest,
   GenerateRequest,
   GenerateResult,
+  MeaningRequest,
   NameElement,
   Origin,
   SlotConstraint,
@@ -95,7 +96,79 @@ export function generateName(
   return { name, surname: req.surname.trim(), elements: chosen, origins };
 }
 
-function asElement(n: CommonName): NameElement {
+/** Split a meaning query ("joy, happy, glee") into lowercase, non-empty terms. */
+function parseTerms(query: string): string[] {
+  return query
+    .toLowerCase()
+    .split(/[,\s]+/)
+    .map((t) => t.trim())
+    .filter((t) => t.length > 0);
+}
+
+/** True when either gloss (lowercased) contains ANY of the query terms. */
+function matchesMeaning(el: NameElement, terms: string[]): boolean {
+  const id = el.meaning.id.toLowerCase();
+  const en = el.meaning.en.toLowerCase();
+  return terms.some((t) => id.includes(t) || en.includes(t));
+}
+
+/**
+ * Reverse search: assemble a name from `req.words` parts whose meaning matches
+ * any of the query terms, honoring the gender filter. Parts are drawn from the
+ * combined pool of etymology roots and attested names. Returns a typed error
+ * (with a bilingual message) when the query is blank or nothing matches, so the
+ * UI can guide the user rather than fail silently.
+ */
+export function generateByMeaning(
+  req: MeaningRequest,
+  pool: NameElement[],
+  rng: () => number = defaultRng(),
+): GenerateResult {
+  const terms = parseTerms(req.query);
+  if (terms.length === 0) {
+    return {
+      error: 'empty-pool',
+      slotIndex: -1,
+      message: {
+        id: 'Ketik kata arti dulu, mis. "joy, happy, glee".',
+        en: 'Type some meaning words first, e.g. "joy, happy, glee".',
+      },
+    };
+  }
+
+  const base = pool.filter((e) => matchesGender(e, req.gender) && matchesMeaning(e, terms));
+  if (base.length === 0) {
+    return {
+      error: 'empty-pool',
+      slotIndex: -1,
+      message: {
+        id: 'Tidak ada nama yang cocok dengan arti itu — coba kata lain.',
+        en: 'No name matches these meanings — try other words.',
+      },
+    };
+  }
+
+  const total = Math.max(1, req.words);
+  const chosen: NameElement[] = [];
+  const usedIds = new Set<string>();
+  for (let i = 0; i < total; i++) {
+    const available = base.filter((e) => !usedIds.has(e.id));
+    const picked = pick(available.length > 0 ? available : base, rng);
+    chosen.push(picked);
+    usedIds.add(picked.id);
+  }
+
+  const name = chosen.map((e) => capitalize(cleanup(e.text))).join(' ');
+  return {
+    name,
+    surname: req.surname.trim(),
+    elements: chosen,
+    origins: distinct(chosen.map((e) => e.origin)),
+  };
+}
+
+/** Convert an attested given name into the building-block element shape. */
+export function asElement(n: CommonName): NameElement {
   return {
     id: n.id,
     text: n.name.toLowerCase(),
