@@ -11,7 +11,7 @@
   { "id": "la-gratia", "text": "gratia", "initial": "g", "origin": "latin", "gender": "P", "meaning": { "id": "anugerah", "en": "grace" } },
   { "id": "la-flora", "text": "flora", "initial": "f", "origin": "latin", "gender": "P", "meaning": { "id": "bunga", "en": "flower, blossom" } },
   { "id": "la-leo", "text": "leo", "initial": "l", "origin": "latin", "gender": "L", "meaning": { "id": "singa", "en": "lion" } },
-  { "id": "la-maxi", "text": "maxi", "initial": "m", "origin": "latin", "gender": "L", "meaning": { "id": "terbesar", "en": "greatest" } },
+  { "id": "la-maxi", "text": "maxi", "initial": "m", "origin": "latin", "gender": "L", "position": "prefix", "meaning": { "id": "terbesar", "en": "greatest" } },
   { "id": "la-aura", "text": "aura", "initial": "a", "origin": "latin", "gender": "P", "meaning": { "id": "kilau keemasan, embusan", "en": "golden glow, breeze" } },
   { "id": "la-marin", "text": "marin", "initial": "m", "origin": "latin", "gender": "N", "meaning": { "id": "dari laut", "en": "of the sea" } },
   { "id": "la-alba", "text": "alba", "initial": "a", "origin": "latin", "gender": "P", "meaning": { "id": "fajar, putih", "en": "dawn, white" } },
@@ -20,7 +20,7 @@
   { "id": "la-serena", "text": "serena", "initial": "s", "origin": "latin", "gender": "P", "meaning": { "id": "tenang, damai", "en": "calm, serene" } },
   { "id": "la-aurel", "text": "aurel", "initial": "a", "origin": "latin", "gender": "N", "meaning": { "id": "keemasan", "en": "golden" } },
   { "id": "la-silva", "text": "silva", "initial": "s", "origin": "latin", "gender": "N", "meaning": { "id": "hutan", "en": "forest, woodland" } },
-  { "id": "la-domi", "text": "domi", "initial": "d", "origin": "latin", "gender": "L", "meaning": { "id": "tuan, penguasa", "en": "lord, master" } },
+  { "id": "la-domi", "text": "domi", "initial": "d", "origin": "latin", "gender": "L", "position": "prefix", "meaning": { "id": "tuan, penguasa", "en": "lord, master" } },
   { "id": "la-bene", "text": "bene", "initial": "b", "origin": "latin", "gender": "N", "meaning": { "id": "baik", "en": "good, well" } },
   { "id": "la-core", "text": "core", "initial": "c", "origin": "latin", "gender": "N", "meaning": { "id": "hati", "en": "heart" } },
   { "id": "la-luna", "text": "luna", "initial": "l", "origin": "latin", "gender": "P", "meaning": { "id": "bulan", "en": "moon" } },
@@ -29,6 +29,6 @@
   { "id": "la-viva", "text": "viva", "initial": "v", "origin": "latin", "gender": "N", "meaning": { "id": "hidup, penuh semangat", "en": "lively, alive" } },
   { "id": "la-astra", "text": "astra", "initial": "a", "origin": "latin", "gender": "N", "meaning": { "id": "bintang", "en": "star" } },
   { "id": "la-sofia", "text": "sofia", "initial": "s", "origin": "latin", "gender": "P", "meaning": { "id": "kebijaksanaan", "en": "wisdom" } },
-  { "id": "la-niko", "text": "niko", "initial": "n", "origin": "latin", "gender": "L", "meaning": { "id": "kemenangan", "en": "victory" } },
+  { "id": "la-niko", "text": "niko", "initial": "n", "origin": "latin", "gender": "L", "position": "prefix", "meaning": { "id": "kemenangan", "en": "victory" } },
   { "id": "la-angela", "text": "angela", "initial": "a", "origin": "latin", "gender": "P", "meaning": { "id": "utusan, malaikat", "en": "messenger, angel" } }
 ]

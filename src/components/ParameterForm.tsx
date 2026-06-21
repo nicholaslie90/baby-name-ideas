@@ -8,6 +8,7 @@ import {
   type SlotConstraint,
 } from '../types';
 import SyllableSlotRow from './SyllableSlotRow';
+import { addedSynonyms } from '../lib/synonyms';
 
 export interface FormState {
   nameStyle: NameStyle;
@@ -60,6 +61,8 @@ interface Props {
 export default function ParameterForm({ value, onChange, onGenerate }: Props) {
   const familiar = value.nameStyle === 'familiar';
   const meaning = value.nameStyle === 'meaning';
+  // Synonyms the meaning query expands to (for the "also searched" hint).
+  const meaningExtras = meaning ? addedSynonyms(value.meaningQuery ?? '') : [];
   const analyze = value.nameStyle === 'analyze';
   const familiarOrigins = value.familiarOrigins ?? [];
   const surname = value.surname.trim();
@@ -210,6 +213,11 @@ export default function ParameterForm({ value, onChange, onGenerate }: Props) {
             Nama dirangkai dari kata yang artinya mengandung salah satu kata ini ·
             names are built from parts meaning any of these words
           </p>
+          {meaningExtras.length > 0 && (
+            <p className="field__hint" style={{ marginTop: '0.35rem' }}>
+              + juga dicari · also searched: {meaningExtras.join(', ')}
+            </p>
+          )}
         </div>
       ) : familiar ? (
         <>
