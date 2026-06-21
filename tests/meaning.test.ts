@@ -60,7 +60,8 @@ describe('generateByMeaning', () => {
     const r = gen({ surname: '', gender: 'N', words: 1, query: '  JOY ,   ,glee ' });
     expect(isGenerateError(r)).toBe(false);
     const g = r as GeneratedName;
-    expect(['a1', 'i1']).toContain(g.elements[0].id);
+    // 'joy' expands to 'happy', so 's1' (gloss "bliss, happy") also matches now.
+    expect(['a1', 's1', 'i1']).toContain(g.elements[0].id);
   });
 
   it('returns an empty-pool error with a message when the query is blank', () => {
@@ -93,6 +94,27 @@ describe('generateByMeaning', () => {
     const a = generateByMeaning(req, POOL, makeRng(7)) as GeneratedName;
     const b = generateByMeaning(req, POOL, makeRng(7)) as GeneratedName;
     expect(a.name).toBe(b.name);
+  });
+
+  it('matches via synonym expansion (query "brave" finds a "valiant"/"berani" gloss)', () => {
+    const POOL2: NameElement[] = [
+      { id: 'v1', text: 'audie', initial: 'a', origin: 'jermanik', gender: 'N', meaning: { id: 'gagah berani', en: 'valiant' } },
+      { id: 'x1', text: 'luna', initial: 'l', origin: 'latin', gender: 'N', meaning: { id: 'bulan', en: 'moon' } },
+    ];
+    const r = generateByMeaning({ surname: '', gender: 'N', words: 1, query: 'brave' }, POOL2, makeRng(42));
+    const g = r as GeneratedName;
+    expect(isGenerateError(r)).toBe(false);
+    expect(g.elements[0].id).toBe('v1');
+  });
+
+  it('expands Indonesian queries too ("berani" finds an English "brave" gloss)', () => {
+    const POOL3: NameElement[] = [
+      { id: 'b1', text: 'wira', initial: 'w', origin: 'sanskerta', gender: 'L', meaning: { id: 'pahlawan', en: 'hero, brave' } },
+      { id: 'x1', text: 'luna', initial: 'l', origin: 'latin', gender: 'P', meaning: { id: 'bulan', en: 'moon' } },
+    ];
+    const r = generateByMeaning({ surname: '', gender: 'N', words: 1, query: 'berani' }, POOL3, makeRng(42));
+    const g = r as GeneratedName;
+    expect(g.elements[0].id).toBe('b1');
   });
 
   describe('sameOrigin', () => {

@@ -8,6 +8,7 @@ import type {
   Origin,
   SlotConstraint,
 } from '../types';
+import { expandTerms } from './synonyms';
 
 /** Deterministic PRNG (mulberry32) so a fixed seed yields repeatable names. */
 export function makeRng(seed: number): () => number {
@@ -124,7 +125,7 @@ export function generateByMeaning(
   pool: NameElement[],
   rng: () => number = defaultRng(),
 ): GenerateResult {
-  const terms = parseTerms(req.query);
+  const terms = expandTerms(parseTerms(req.query));
   if (terms.length === 0) {
     return {
       error: 'empty-pool',
