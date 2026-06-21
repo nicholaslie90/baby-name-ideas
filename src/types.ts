@@ -110,6 +110,8 @@ export interface FamiliarRequest {
   initial?: string;
   /** Optional subset of origins. Empty/undefined = all. */
   origins?: Origin[];
+  /** When true, force every word to share one (randomly chosen) origin. */
+  sameOrigin?: boolean;
 }
 
 export interface MeaningRequest {
@@ -119,6 +121,8 @@ export interface MeaningRequest {
   words: number;
   /** Raw meaning query, e.g. "joy, happy, glee" (comma/space separated). */
   query: string;
+  /** When true, force every part to share one (randomly chosen) origin. */
+  sameOrigin?: boolean;
 }
 
 export interface GeneratedName {

@@ -21,6 +21,8 @@ export interface FormState {
   familiarOrigins?: Origin[];
   /** Meaning-mode: meaning words to search, e.g. "joy, happy, glee". */
   meaningQuery?: string;
+  /** Familiar/meaning modes: force all words to share one etymology. */
+  sameOrigin?: boolean;
 }
 
 const NAME_STYLES: { value: NameStyle; label: string; hint: string }[] = [
@@ -239,6 +241,35 @@ export default function ParameterForm({ value, onChange, onGenerate }: Props) {
               </button>
             ))}
           </div>
+        </div>
+      )}
+
+      {(familiar || meaning) && (
+        <div className="field">
+          <span className="field__label">
+            Etimologi antar-kata <span className="field__hint">/ Across words</span>
+          </span>
+          <div className="segmented">
+            <button
+              type="button"
+              aria-pressed={!value.sameOrigin}
+              onClick={() => onChange({ ...value, sameOrigin: false })}
+            >
+              Campur
+            </button>
+            <button
+              type="button"
+              aria-pressed={!!value.sameOrigin}
+              onClick={() => onChange({ ...value, sameOrigin: true })}
+            >
+              Sama
+            </button>
+          </div>
+          <p className="field__hint" style={{ marginTop: '0.35rem' }}>
+            {value.sameOrigin
+              ? 'Semua kata dari satu etimologi · all words share one etymology'
+              : 'Boleh beda etimologi tiap kata · words may mix etymologies'}
+          </p>
         </div>
       )}
 

@@ -63,3 +63,30 @@ describe('generateFamiliarName', () => {
     expect(isGenerateError(r)).toBe(true);
   });
 });
+
+describe('generateFamiliarName — sameOrigin', () => {
+  const MIXED: CommonName[] = [
+    { id: 'l1', name: 'Cindy', initial: 'c', syllables: 2, origin: 'latin', gender: 'P', meaning: { id: 'bulan', en: 'moon' } },
+    { id: 'l2', name: 'Elaine', initial: 'e', syllables: 2, origin: 'latin', gender: 'P', meaning: { id: 'cahaya', en: 'light' } },
+    { id: 'l3', name: 'Sophia', initial: 's', syllables: 3, origin: 'latin', gender: 'P', meaning: { id: 'bijak', en: 'wisdom' } },
+    { id: 'a1', name: 'Aisha', initial: 'a', syllables: 2, origin: 'arab', gender: 'P', meaning: { id: 'hidup', en: 'alive' } },
+    { id: 'a2', name: 'Halima', initial: 'h', syllables: 3, origin: 'arab', gender: 'P', meaning: { id: 'lembut', en: 'gentle' } },
+  ];
+
+  it('forces every word to share one origin across seeds', () => {
+    for (const seed of [1, 2, 3, 7, 42, 99]) {
+      const r = generateFamiliarName({ surname: '', gender: 'P', words: 2, sameOrigin: true }, MIXED, makeRng(seed)) as GeneratedName;
+      expect(isGenerateError(r)).toBe(false);
+      expect(new Set(r.elements.map((e) => e.origin)).size).toBe(1);
+      expect(r.origins).toHaveLength(1);
+    }
+  });
+
+  it('mixed mode (default) can produce more than one origin', () => {
+    const sawMix = [1, 2, 3, 7, 42, 99].some((seed) => {
+      const r = generateFamiliarName({ surname: '', gender: 'P', words: 2 }, MIXED, makeRng(seed)) as GeneratedName;
+      return new Set(r.elements.map((e) => e.origin)).size > 1;
+    });
+    expect(sawMix).toBe(true);
+  });
+});

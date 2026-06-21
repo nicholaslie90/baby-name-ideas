@@ -40,6 +40,7 @@ export default function App() {
           words: wordCount,
           initial: form.familiarInitial,
           origins: form.familiarOrigins,
+          sameOrigin: form.sameOrigin,
         },
         COMMON_NAMES,
       );
@@ -51,6 +52,7 @@ export default function App() {
           gender: form.gender,
           words: wordCount,
           query: form.meaningQuery ?? '',
+          sameOrigin: form.sameOrigin,
         },
         MEANING_POOL,
       );
@@ -132,6 +134,7 @@ export default function App() {
     initial: form.familiarInitial ?? '',
     origins: form.familiarOrigins ?? [],
     meaningQuery: form.meaningQuery ?? '',
+    sameOrigin: form.sameOrigin ?? false,
     slots: form.slots,
     // Whether a surname exists changes the generated word count (but typing
     // within an existing surname does not — that updates the frame live).

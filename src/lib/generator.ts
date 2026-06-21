@@ -151,9 +151,15 @@ export function generateByMeaning(
   const total = Math.max(1, req.words);
   const chosen: NameElement[] = [];
   const usedIds = new Set<string>();
-  for (let i = 0; i < total; i++) {
-    const available = base.filter((e) => !usedIds.has(e.id));
-    const picked = pick(available.length > 0 ? available : base, rng);
+  const first = pick(base, rng);
+  chosen.push(first);
+  usedIds.add(first.id);
+
+  // "Same origin": lock the remaining parts to the first part's origin.
+  const originPool = req.sameOrigin ? base.filter((e) => e.origin === first.origin) : base;
+  for (let i = 1; i < total; i++) {
+    const available = originPool.filter((e) => !usedIds.has(e.id));
+    const picked = pick(available.length > 0 ? available : originPool, rng);
     chosen.push(picked);
     usedIds.add(picked.id);
   }
@@ -216,9 +222,12 @@ export function generateFamiliarName(
   chosen.push(first);
   usedIds.add(first.id);
 
+  // "Same origin": lock the remaining words to the first word's origin so the
+  // whole name shares one (effectively random, from the allowed set) etymology.
+  const pool = req.sameOrigin ? base.filter((n) => n.origin === first.origin) : base;
   for (let i = 1; i < total; i++) {
-    const available = base.filter((n) => !usedIds.has(n.id));
-    const picked = pick(available.length > 0 ? available : base, rng);
+    const available = pool.filter((n) => !usedIds.has(n.id));
+    const picked = pick(available.length > 0 ? available : pool, rng);
     chosen.push(picked);
     usedIds.add(picked.id);
   }

@@ -25,13 +25,17 @@ deploys to GitHub Pages.
   words (2–4)** — e.g. 3 gives a three-word name — plus the initial letter (awalan)
   and etymology. In Composed mode each word is controlled *individually*, so you
   can mix origins across words ("campuran etimologi"). **Leaving an awalan empty
-  auto-generates that part.**
+  auto-generates that part.** In Familiar and By-meaning modes an
+  **Etimologi antar-kata** toggle picks **Campur** (words may mix etymologies)
+  or **Sama** (all words share one randomly chosen etymology).
 - **Origins (v1):** Arab/Islami, Sanskerta & Jawa, Latin/Yunani, Ibrani.
 - **Composed meaning** built from each chosen root, shown bilingually.
 - **History & no-repeat:** regenerating never repeats a name already shown;
   **Prev/Next** step back and forth through the names you've generated, and
   **Reset** clears the tracked set so you can start over.
 - **Four frame styles:** Klasik Elegan, Modern Lembut, Botani, Royal Gelap.
+- **Five cursive name fonts:** Great Vibes (default), Dancing Script, Parisienne,
+  Sacramento, Pacifico — picked under the frame and carried into the export.
 - **Export:** hi-res PNG (3× pixel ratio) and PDF, with self-hosted cursive fonts
   embedded into the export.
 

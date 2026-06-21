@@ -94,4 +94,29 @@ describe('generateByMeaning', () => {
     const b = generateByMeaning(req, POOL, makeRng(7)) as GeneratedName;
     expect(a.name).toBe(b.name);
   });
+
+  describe('sameOrigin', () => {
+    const JOY: NameElement[] = [
+      { id: 'a1', text: 'farah', initial: 'f', origin: 'arab', gender: 'N', meaning: { id: '', en: 'joy' } },
+      { id: 'a2', text: 'saeed', initial: 's', origin: 'arab', gender: 'N', meaning: { id: '', en: 'happy' } },
+      { id: 'l1', text: 'beatrice', initial: 'b', origin: 'latin', gender: 'N', meaning: { id: '', en: 'joy' } },
+      { id: 'l2', text: 'felix', initial: 'f', origin: 'latin', gender: 'N', meaning: { id: '', en: 'happy' } },
+    ];
+
+    it('forces every part to share one origin across seeds', () => {
+      for (const seed of [1, 2, 3, 7, 42, 99]) {
+        const r = generateByMeaning({ surname: '', gender: 'N', words: 2, query: 'joy, happy', sameOrigin: true }, JOY, makeRng(seed)) as GeneratedName;
+        expect(isGenerateError(r)).toBe(false);
+        expect(new Set(r.elements.map((e) => e.origin)).size).toBe(1);
+      }
+    });
+
+    it('mixed mode (default) can produce more than one origin', () => {
+      const sawMix = [1, 2, 3, 7, 42, 99].some((seed) => {
+        const r = generateByMeaning({ surname: '', gender: 'N', words: 2, query: 'joy, happy' }, JOY, makeRng(seed)) as GeneratedName;
+        return new Set(r.elements.map((e) => e.origin)).size > 1;
+      });
+      expect(sawMix).toBe(true);
+    });
+  });
 });
