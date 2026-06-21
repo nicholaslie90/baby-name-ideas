@@ -1,0 +1,1510 @@
+[
+  {
+    "id": "isl-adam-l",
+    "name": "Adam",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "manusia pertama",
+      "en": "the first man"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-idris-l",
+    "name": "Idris",
+    "initial": "i",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "nabi yang pandai",
+      "en": "the learned prophet"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-nuh-l",
+    "name": "Nuh",
+    "initial": "n",
+    "syllables": 1,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "Nabi Nuh",
+      "en": "the prophet Noah"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hud-l",
+    "name": "Hud",
+    "initial": "h",
+    "syllables": 1,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "nama seorang nabi",
+      "en": "a prophet's name"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-saleh-l",
+    "name": "Saleh",
+    "initial": "s",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "saleh, baik",
+      "en": "pious, righteous"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-ibrahim-l",
+    "name": "Ibrahim",
+    "initial": "i",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "bapak banyak bangsa",
+      "en": "father of nations"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-ismail-l",
+    "name": "Ismail",
+    "initial": "i",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "Tuhan mendengar",
+      "en": "God hears"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-ishaq-l",
+    "name": "Ishaq",
+    "initial": "i",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "tawa",
+      "en": "laughter"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-yaqub-l",
+    "name": "Yaqub",
+    "initial": "y",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang mengikuti",
+      "en": "he who follows"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-yusuf-l",
+    "name": "Yusuf",
+    "initial": "y",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "Tuhan menambahkan",
+      "en": "God increases"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-ayyub-l",
+    "name": "Ayyub",
+    "initial": "a",
+    "syllables": 1,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang kembali kepada Tuhan",
+      "en": "one who returns to God"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-musa-l",
+    "name": "Musa",
+    "initial": "m",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "diselamatkan dari air",
+      "en": "saved from the water"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-harun-l",
+    "name": "Harun",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "gunung, tinggi",
+      "en": "mountain, exalted"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-ilyas-l",
+    "name": "Ilyas",
+    "initial": "i",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "Tuhan adalah Tuhanku",
+      "en": "the Lord is my God"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-yunus-l",
+    "name": "Yunus",
+    "initial": "y",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "merpati",
+      "en": "dove"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-zakaria-l",
+    "name": "Zakaria",
+    "initial": "z",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "Tuhan mengingat",
+      "en": "God remembers"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-yahya-l",
+    "name": "Yahya",
+    "initial": "y",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang hidup",
+      "en": "living"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-isa-l",
+    "name": "Isa",
+    "initial": "i",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "Nabi Isa",
+      "en": "the prophet Jesus"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-dawud-l",
+    "name": "Dawud",
+    "initial": "d",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang dikasihi",
+      "en": "beloved"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-sulaiman-l",
+    "name": "Sulaiman",
+    "initial": "s",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "damai sejahtera",
+      "en": "peaceful"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-luqman-l",
+    "name": "Luqman",
+    "initial": "l",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "bijaksana",
+      "en": "the wise"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-zulkifli-l",
+    "name": "Zulkifli",
+    "initial": "z",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "nama seorang nabi",
+      "en": "a prophet's name"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-muhammad-l",
+    "name": "Muhammad",
+    "initial": "m",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang terpuji",
+      "en": "the praised one"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-ahmad-l",
+    "name": "Ahmad",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang sangat terpuji",
+      "en": "most praiseworthy"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-mahmud-l",
+    "name": "Mahmud",
+    "initial": "m",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang dipuji",
+      "en": "praised"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-umar-l",
+    "name": "Umar",
+    "initial": "u",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "panjang umur, makmur",
+      "en": "long-lived, flourishing"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-usman-l",
+    "name": "Usman",
+    "initial": "u",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "nama sahabat Nabi",
+      "en": "a companion of the Prophet"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-ali-l",
+    "name": "Ali",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "tinggi, mulia",
+      "en": "high, exalted"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hamzah-l",
+    "name": "Hamzah",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "singa, kuat",
+      "en": "lion, strong"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-khalid-l",
+    "name": "Khalid",
+    "initial": "k",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "abadi, kekal",
+      "en": "eternal"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-bilal-l",
+    "name": "Bilal",
+    "initial": "b",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "air, kesegaran",
+      "en": "moisture, freshness"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-salman-l",
+    "name": "Salman",
+    "initial": "s",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "selamat, aman",
+      "en": "safe, peaceful"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-zaid-l",
+    "name": "Zaid",
+    "initial": "z",
+    "syllables": 1,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "pertumbuhan, kelimpahan",
+      "en": "growth, abundance"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-saad-l",
+    "name": "Saad",
+    "initial": "s",
+    "syllables": 1,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "keberuntungan",
+      "en": "good fortune"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-anas-l",
+    "name": "Anas",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "keramahan, kasih sayang",
+      "en": "friendliness, affection"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-muadz-l",
+    "name": "Muadz",
+    "initial": "m",
+    "syllables": 1,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang terlindungi",
+      "en": "protected"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-yasir-l",
+    "name": "Yasir",
+    "initial": "y",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "kemudahan, kemakmuran",
+      "en": "ease, wealth"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-ammar-l",
+    "name": "Ammar",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "berumur panjang",
+      "en": "long-lived"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-faruq-l",
+    "name": "Faruq",
+    "initial": "f",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "pembeda benar dan salah",
+      "en": "one who distinguishes truth"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-karim-l",
+    "name": "Karim",
+    "initial": "k",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "mulia, dermawan",
+      "en": "noble, generous"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-rahman-l",
+    "name": "Rahman",
+    "initial": "r",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "maha pengasih",
+      "en": "the most compassionate"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-rasyid-l",
+    "name": "Rasyid",
+    "initial": "r",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang lurus, bijak",
+      "en": "rightly guided"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hakim-l",
+    "name": "Hakim",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "bijaksana",
+      "en": "wise"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-aziz-l",
+    "name": "Aziz",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "mulia, perkasa",
+      "en": "mighty, dear"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hafiz-l",
+    "name": "Hafiz",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "penjaga, penghafal",
+      "en": "guardian, keeper"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-amin-l",
+    "name": "Amin",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang terpercaya",
+      "en": "trustworthy"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-iman-l",
+    "name": "Iman",
+    "initial": "i",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "keimanan",
+      "en": "faith"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-fauzan-l",
+    "name": "Fauzan",
+    "initial": "f",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "kemenangan, keberhasilan",
+      "en": "success, salvation"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-rizki-l",
+    "name": "Rizki",
+    "initial": "r",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "rezeki, karunia",
+      "en": "sustenance, blessing"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hidayat-l",
+    "name": "Hidayat",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "petunjuk",
+      "en": "guidance"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-taufik-l",
+    "name": "Taufik",
+    "initial": "t",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "pertolongan Tuhan",
+      "en": "divine guidance"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-ridwan-l",
+    "name": "Ridwan",
+    "initial": "r",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "keridaan, penjaga surga",
+      "en": "divine pleasure"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-nabil-l",
+    "name": "Nabil",
+    "initial": "n",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "mulia, cerdas",
+      "en": "noble, intelligent"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-faisal-l",
+    "name": "Faisal",
+    "initial": "f",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "penengah, tegas",
+      "en": "decisive"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-fadhil-l",
+    "name": "Fadhil",
+    "initial": "f",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "utama, berbudi",
+      "en": "virtuous"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hasan-l",
+    "name": "Hasan",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "baik, tampan",
+      "en": "good, handsome"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-husain-l",
+    "name": "Husain",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang baik",
+      "en": "the good one"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-ihsan-l",
+    "name": "Ihsan",
+    "initial": "i",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "kebaikan",
+      "en": "excellence, benevolence"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-irfan-l",
+    "name": "Irfan",
+    "initial": "i",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "pengetahuan, kearifan",
+      "en": "knowledge, wisdom"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-arif-l",
+    "name": "Arif",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "bijaksana, mengetahui",
+      "en": "wise, knowing"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-syakir-l",
+    "name": "Syakir",
+    "initial": "s",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang bersyukur",
+      "en": "grateful"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-najib-l",
+    "name": "Najib",
+    "initial": "n",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "mulia, terhormat",
+      "en": "noble"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-latif-l",
+    "name": "Latif",
+    "initial": "l",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "lembut, halus",
+      "en": "gentle, kind"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-munir-l",
+    "name": "Munir",
+    "initial": "m",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang bercahaya",
+      "en": "radiant"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-anwar-l",
+    "name": "Anwar",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "lebih bercahaya",
+      "en": "more radiant"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-wafi-l",
+    "name": "Wafi",
+    "initial": "w",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "yang setia",
+      "en": "faithful"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-fikri-l",
+    "name": "Fikri",
+    "initial": "f",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "pemikiran, cerdas",
+      "en": "intellect, thoughtful"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-zaki-l",
+    "name": "Zaki",
+    "initial": "z",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "suci, cerdas",
+      "en": "pure, intelligent"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-rafi-l",
+    "name": "Rafi",
+    "initial": "r",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "tinggi, mulia",
+      "en": "high, exalted"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-syamil-l",
+    "name": "Syamil",
+    "initial": "s",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "L",
+    "meaning": {
+      "id": "menyeluruh, sempurna",
+      "en": "comprehensive, complete"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-aisyah-p",
+    "name": "Aisyah",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "yang hidup, ceria",
+      "en": "living, lively"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-fatimah-p",
+    "name": "Fatimah",
+    "initial": "f",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "yang menjauhkan diri",
+      "en": "one who abstains"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-khadijah-p",
+    "name": "Khadijah",
+    "initial": "k",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "yang lahir lebih awal",
+      "en": "early born"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-maryam-p",
+    "name": "Maryam",
+    "initial": "m",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "yang dikasihi",
+      "en": "beloved"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hajar-p",
+    "name": "Hajar",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "ibunda Nabi Ismail",
+      "en": "mother of the prophet Ismail"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-zainab-p",
+    "name": "Zainab",
+    "initial": "z",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "pohon yang harum dan indah",
+      "en": "fragrant flowering tree"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hafsah-p",
+    "name": "Hafsah",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "singa betina muda",
+      "en": "young lioness"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-ruqayyah-p",
+    "name": "Ruqayyah",
+    "initial": "r",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "naik, lembut",
+      "en": "ascent, gentle"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-sumayyah-p",
+    "name": "Sumayyah",
+    "initial": "s",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "yang tinggi, mulia",
+      "en": "lofty, high"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-asma-p",
+    "name": "Asma",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "mulia, tinggi",
+      "en": "lofty, noble"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-halimah-p",
+    "name": "Halimah",
+    "initial": "h",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "lembut, sabar",
+      "en": "gentle, patient"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-maimunah-p",
+    "name": "Maimunah",
+    "initial": "m",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "yang diberkati",
+      "en": "blessed"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-safiyyah-p",
+    "name": "Safiyyah",
+    "initial": "s",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "murni, sahabat tulus",
+      "en": "pure, sincere friend"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-nur-p",
+    "name": "Nur",
+    "initial": "n",
+    "syllables": 1,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "cahaya",
+      "en": "light"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-aida-p",
+    "name": "Aida",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "yang kembali, hadiah",
+      "en": "returning, reward"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-nadia-p",
+    "name": "Nadia",
+    "initial": "n",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "lembut, pemurah",
+      "en": "tender, generous"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-salma-p",
+    "name": "Salma",
+    "initial": "s",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "selamat, damai",
+      "en": "safe, peaceful"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-yasmin-p",
+    "name": "Yasmin",
+    "initial": "y",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "bunga melati",
+      "en": "jasmine flower"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-laila-p",
+    "name": "Laila",
+    "initial": "l",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "malam",
+      "en": "night"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-zahra-p",
+    "name": "Zahra",
+    "initial": "z",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "berseri, bunga",
+      "en": "radiant, flower"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-huda-p",
+    "name": "Huda",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "petunjuk",
+      "en": "guidance"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-sakinah-p",
+    "name": "Sakinah",
+    "initial": "s",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "ketenangan",
+      "en": "tranquility"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hana-p",
+    "name": "Hana",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "kebahagiaan",
+      "en": "happiness, bliss"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-amira-p",
+    "name": "Amira",
+    "initial": "a",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "putri, pemimpin",
+      "en": "princess, leader"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-karima-p",
+    "name": "Karima",
+    "initial": "k",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "mulia, dermawan",
+      "en": "noble, generous"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-latifah-p",
+    "name": "Latifah",
+    "initial": "l",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "lembut, halus",
+      "en": "gentle, kind"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-rahma-p",
+    "name": "Rahma",
+    "initial": "r",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "kasih sayang",
+      "en": "mercy, compassion"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hikmah-p",
+    "name": "Hikmah",
+    "initial": "h",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "kebijaksanaan",
+      "en": "wisdom"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-najwa-p",
+    "name": "Najwa",
+    "initial": "n",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "bisikan mesra, doa",
+      "en": "intimate talk, confiding"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-naila-p",
+    "name": "Naila",
+    "initial": "n",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "yang memperoleh",
+      "en": "one who attains"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-syifa-p",
+    "name": "Syifa",
+    "initial": "s",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "kesembuhan",
+      "en": "healing"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-inayah-p",
+    "name": "Inayah",
+    "initial": "i",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "perlindungan Tuhan",
+      "en": "care, divine protection"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hamida-p",
+    "name": "Hamida",
+    "initial": "h",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "yang memuji",
+      "en": "praiseworthy"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-aliyah-p",
+    "name": "Aliyah",
+    "initial": "a",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "tinggi, mulia",
+      "en": "exalted, sublime"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-zahira-p",
+    "name": "Zahira",
+    "initial": "z",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "berseri, jelas",
+      "en": "radiant, evident"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-nabila-p",
+    "name": "Nabila",
+    "initial": "n",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "mulia, cerdas",
+      "en": "noble, intelligent"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-faizah-p",
+    "name": "Faizah",
+    "initial": "f",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "yang menang, sukses",
+      "en": "victorious, successful"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-jamila-p",
+    "name": "Jamila",
+    "initial": "j",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "cantik",
+      "en": "beautiful"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-wardah-p",
+    "name": "Wardah",
+    "initial": "w",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "bunga mawar",
+      "en": "rose"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-balqis-p",
+    "name": "Balqis",
+    "initial": "b",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "ratu Saba",
+      "en": "Queen of Sheba"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-anisa-p",
+    "name": "Anisa",
+    "initial": "a",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "ramah, lembut",
+      "en": "friendly, gentle"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-azizah-p",
+    "name": "Azizah",
+    "initial": "a",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "mulia, perkasa",
+      "en": "mighty, dear"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-hayat-p",
+    "name": "Hayat",
+    "initial": "h",
+    "syllables": 1,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "kehidupan",
+      "en": "life"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-afifah-p",
+    "name": "Afifah",
+    "initial": "a",
+    "syllables": 3,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "suci, terjaga",
+      "en": "chaste, virtuous"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-rania-p",
+    "name": "Rania",
+    "initial": "r",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "yang menatap dengan kagum",
+      "en": "gazing, captivating"
+    },
+    "islamic": true
+  },
+  {
+    "id": "isl-sofia-p",
+    "name": "Sofia",
+    "initial": "s",
+    "syllables": 2,
+    "origin": "arab",
+    "gender": "P",
+    "meaning": {
+      "id": "kebijaksanaan",
+      "en": "wisdom"
+    },
+    "islamic": true
+  }
+]

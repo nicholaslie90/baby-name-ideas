@@ -77,4 +77,13 @@ describe('common-names dataset', () => {
     expect(biblical.some((n) => n.gender === 'L')).toBe(true);
     expect(biblical.some((n) => n.gender === 'P')).toBe(true);
   });
+
+  it('tags a healthy set of islamic names (both genders)', () => {
+    const islamic = COMMON_NAMES.filter((n) => n.islamic);
+    expect(islamic.length).toBeGreaterThanOrEqual(100);
+    // attested dictionary entries get tagged too, not just freshly added ones
+    expect(COMMON_NAMES.some((n) => n.name === 'Ali' && n.islamic)).toBe(true);
+    expect(islamic.some((n) => n.gender === 'L')).toBe(true);
+    expect(islamic.some((n) => n.gender === 'P')).toBe(true);
+  });
 });

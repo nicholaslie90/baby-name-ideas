@@ -22,6 +22,8 @@ export interface FormState {
   familiarOrigins?: Origin[];
   /** Familiar-mode: restrict to biblical names only. */
   biblicalOnly?: boolean;
+  /** Familiar-mode: restrict to islamic names only. */
+  islamicOnly?: boolean;
   /** Meaning-mode: meaning words to search, e.g. "joy, happy, glee". */
   meaningQuery?: string;
   /** Familiar/meaning modes: force all words to share one etymology. */
@@ -265,10 +267,22 @@ export default function ParameterForm({ value, onChange, onGenerate }: Props) {
               >
                 ✝ Alkitab · Biblical
               </button>
+              <button
+                type="button"
+                className="chip"
+                aria-pressed={!!value.islamicOnly}
+                onClick={() => onChange({ ...value, islamicOnly: !value.islamicOnly })}
+              >
+                ☪ Islami · Islamic
+              </button>
             </div>
-            {value.biblicalOnly && (
+            {(value.biblicalOnly || value.islamicOnly) && (
               <p className="field__hint" style={{ marginTop: '0.35rem' }}>
-                Hanya nama dari Alkitab · biblical names only
+                {value.biblicalOnly && value.islamicOnly
+                  ? 'Hanya nama Alkitab atau Islami · biblical or islamic names only'
+                  : value.islamicOnly
+                    ? 'Hanya nama bernuansa Islami · islamic names only'
+                    : 'Hanya nama dari Alkitab · biblical names only'}
               </p>
             )}
           </div>

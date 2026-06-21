@@ -42,6 +42,7 @@ export default function App() {
           origins: form.familiarOrigins,
           sameOrigin: form.sameOrigin,
           biblicalOnly: form.biblicalOnly,
+          islamicOnly: form.islamicOnly,
         },
         COMMON_NAMES,
       );
@@ -141,6 +142,7 @@ export default function App() {
     ownName: form.ownName ?? '',
     sameOrigin: form.sameOrigin ?? false,
     biblicalOnly: form.biblicalOnly ?? false,
+    islamicOnly: form.islamicOnly ?? false,
     slots: form.slots,
     // Whether a surname exists changes the generated word count (but typing
     // within an existing surname does not — that updates the frame live).

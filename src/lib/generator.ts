@@ -198,12 +198,18 @@ export function generateFamiliarName(
   rng: () => number = defaultRng(),
 ): GenerateResult {
   const wantInitial = req.initial?.toLowerCase();
+  // Category chips combine as OR: with none on, every name passes; with one or
+  // more on, a name needs to match at least one enabled category.
+  const matchesCategory = (n: CommonName): boolean => {
+    if (!req.biblicalOnly && !req.islamicOnly) return true;
+    return (req.biblicalOnly === true && n.biblical === true) || (req.islamicOnly === true && n.islamic === true);
+  };
   const base = names.filter(
     (n) =>
       !n.name.includes(' ') &&
       matchesGender(n, req.gender) &&
       (!req.origins || req.origins.length === 0 || req.origins.includes(n.origin)) &&
-      (!req.biblicalOnly || n.biblical === true),
+      matchesCategory(n),
   );
 
   if (base.length === 0) {

@@ -112,3 +112,28 @@ describe('generateFamiliarName — biblicalOnly', () => {
     expect(isGenerateError(r)).toBe(true);
   });
 });
+
+describe('generateFamiliarName — islamicOnly', () => {
+  const POOL: CommonName[] = [
+    { id: 'i1', name: 'Yusuf', initial: 'y', syllables: 2, origin: 'arab', gender: 'L', meaning: { id: 'Tuhan menambah', en: 'God increases' }, islamic: true },
+    { id: 'i2', name: 'Bilal', initial: 'b', syllables: 2, origin: 'arab', gender: 'L', meaning: { id: 'kesegaran', en: 'freshness' }, islamic: true },
+    { id: 'n1', name: 'Kevin', initial: 'k', syllables: 2, origin: 'keltik', gender: 'L', meaning: { id: 'tampan', en: 'handsome' } },
+    { id: 'b1', name: 'Daniel', initial: 'd', syllables: 2, origin: 'ibrani', gender: 'L', meaning: { id: 'hakim', en: 'judge' }, biblical: true },
+  ];
+
+  it('draws only from islamic names when islamicOnly is set', () => {
+    for (const seed of [1, 2, 3, 7, 42, 99]) {
+      const r = generateFamiliarName({ surname: '', gender: 'L', words: 2, islamicOnly: true }, POOL, makeRng(seed)) as GeneratedName;
+      expect(isGenerateError(r)).toBe(false);
+      for (const w of r.name.split(' ')) expect(['Yusuf', 'Bilal']).toContain(w);
+    }
+  });
+
+  it('combines categories as OR: islamicOnly + biblicalOnly admits either', () => {
+    for (const seed of [1, 2, 3, 7, 42, 99]) {
+      const r = generateFamiliarName({ surname: '', gender: 'L', words: 2, islamicOnly: true, biblicalOnly: true }, POOL, makeRng(seed)) as GeneratedName;
+      expect(isGenerateError(r)).toBe(false);
+      for (const w of r.name.split(' ')) expect(['Yusuf', 'Bilal', 'Daniel']).toContain(w);
+    }
+  });
+});

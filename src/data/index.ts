@@ -7,6 +7,7 @@ import ibrani from './elements.ibrani.json';
 import commonNames from './commonNames.json';
 import importedNames from './commonNamesImported.json';
 import biblicalNames from './biblicalNames.json';
+import islamicNames from './islamicNames.json';
 
 /** Building-block roots used by the "composed" (unique) name style. */
 export const ELEMENTS: NameElement[] = [
@@ -24,21 +25,29 @@ export const ELEMENTS: NameElement[] = [
 function mergeCommonNames(): CommonName[] {
   const byKey = new Map<string, CommonName>();
   const key = (n: CommonName) => `${n.name.toLowerCase()}|${n.gender}`;
-  // Curated core wins, then curated biblical entries fill gaps, then the dictionary.
+  // Curated core wins, then curated biblical/islamic entries fill gaps, then the dictionary.
   for (const n of commonNames as CommonName[]) byKey.set(key(n), n);
   for (const n of biblicalNames as CommonName[]) {
+    if (!byKey.has(key(n))) byKey.set(key(n), n);
+  }
+  for (const n of islamicNames as CommonName[]) {
     if (!byKey.has(key(n))) byKey.set(key(n), n);
   }
   for (const n of importedNames as CommonName[]) {
     if (!byKey.has(key(n))) byKey.set(key(n), n);
   }
-  // Tag every entry whose name is a known biblical name (regardless of gender),
-  // so attested dictionary entries (David, Daniel, …) keep their own meaning but
-  // still register as biblical.
+  // Tag every entry whose name is a known biblical/islamic name (regardless of
+  // gender), so attested dictionary entries (David, Yusuf, …) keep their own
+  // meaning but still register in the category. A name may carry both flags.
   const biblicalSet = new Set((biblicalNames as CommonName[]).map((n) => n.name.toLowerCase()));
-  return [...byKey.values()].map((n) =>
-    biblicalSet.has(n.name.toLowerCase()) ? { ...n, biblical: true } : n,
-  );
+  const islamicSet = new Set((islamicNames as CommonName[]).map((n) => n.name.toLowerCase()));
+  return [...byKey.values()].map((n) => {
+    const lower = n.name.toLowerCase();
+    const tagged = { ...n };
+    if (biblicalSet.has(lower)) tagged.biblical = true;
+    if (islamicSet.has(lower)) tagged.islamic = true;
+    return tagged;
+  });
 }
 
 export const COMMON_NAMES: CommonName[] = mergeCommonNames();

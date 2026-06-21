@@ -84,6 +84,8 @@ export interface CommonName {
   meaning: { id: string; en: string };
   /** True for names attested in the Bible (Old or New Testament). */
   biblical?: boolean;
+  /** True for names with Islamic resonance (prophets, companions, common Muslim names). */
+  islamic?: boolean;
 }
 
 /** Which generation style the user picked. */
@@ -116,6 +118,8 @@ export interface FamiliarRequest {
   sameOrigin?: boolean;
   /** When true, draw only from names attested in the Bible. */
   biblicalOnly?: boolean;
+  /** When true, draw only from names with Islamic resonance. */
+  islamicOnly?: boolean;
 }
 
 export interface MeaningRequest {
