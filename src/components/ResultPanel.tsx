@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
 import type { GeneratedName, GenerateError } from '../types';
-import NameFrame, { type FrameStyle } from './NameFrame';
+import NameFrame, { NAME_FONTS, type FrameStyle, type NameFontId } from './NameFrame';
 import FrameStyleSwitcher from './FrameStyleSwitcher';
+import NameFontSwitcher from './NameFontSwitcher';
 import ExportButtons from './ExportButtons';
 
 interface Props {
@@ -29,6 +30,8 @@ export default function ResultPanel({
 }: Props) {
   const frameRef = useRef<HTMLDivElement>(null);
   const [style, setStyle] = useState<FrameStyle>('elegant');
+  const [nameFont, setNameFont] = useState<NameFontId>('great-vibes');
+  const nameFontFamily = NAME_FONTS.find((f) => f.id === nameFont)?.family;
 
   if (error) {
     return (
@@ -80,6 +83,7 @@ export default function ResultPanel({
   return (
     <div className="panel result">
       <FrameStyleSwitcher value={style} onChange={setStyle} />
+      <NameFontSwitcher value={nameFont} onChange={setNameFont} />
 
       <div className="result__stage">
         <button
@@ -90,7 +94,7 @@ export default function ResultPanel({
         >
           ‹
         </button>
-        <NameFrame ref={frameRef} result={current} style={style} />
+        <NameFrame ref={frameRef} result={current} style={style} nameFontFamily={nameFontFamily} />
         <button className="navarrow" onClick={onNext} aria-label="Nama berikutnya">
           ›
         </button>
