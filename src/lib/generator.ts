@@ -5,6 +5,7 @@ import type {
   GenerateResult,
   MeaningRequest,
   NameElement,
+  Origin,
   SlotConstraint,
 } from '../types';
 import { expandTerms } from './synonyms';
@@ -402,4 +403,64 @@ export function analyzeName(
     elements: chosen,
     origins: distinct(chosen.map((e) => e.origin)),
   };
+}
+
+export const MAX_CANDIDATES_PER_WORD = 6;
+export const FUZZY_MAX_DISTANCE = 2;
+
+export interface MeaningCandidate {
+  kind: 'exact' | 'fuzzy' | 'root';
+  displayName: string;
+  elements: NameElement[];
+  meaning: { id: string; en: string };
+  origins: Origin[];
+  distance?: number;
+}
+
+export interface WordAnalysis {
+  raw: string;
+  candidates: MeaningCandidate[];
+}
+
+function notFoundCandidate(word: string, lw: string): MeaningCandidate {
+  const meaning = { id: 'arti tidak ditemukan', en: 'meaning not found' };
+  return {
+    kind: 'root',
+    displayName: word,
+    elements: [
+      { id: `unknown-${lw || 'x'}`, text: word.toLowerCase(), initial: lw[0] ?? '', origin: 'lainnya', gender: 'N', meaning },
+    ],
+    meaning,
+    origins: ['lainnya'],
+  };
+}
+
+export function analyzeNameCandidates(
+  input: string,
+  names: CommonName[],
+  elements: NameElement[],
+): WordAnalysis[] {
+  const words = input.trim().split(/\s+/).filter(Boolean);
+  return words.map((word) => {
+    const lw = word.toLowerCase().replace(/[^a-z]/g, '');
+    const candidates: MeaningCandidate[] = [];
+
+    // (1) Exact matches across all etymology families.
+    if (lw) {
+      for (const n of names) {
+        if (n.name.toLowerCase() === lw) {
+          candidates.push({
+            kind: 'exact',
+            displayName: n.name,
+            elements: [asElement(n)],
+            meaning: n.meaning,
+            origins: [n.origin],
+          });
+        }
+      }
+    }
+
+    const ranked = candidates.length > 0 ? candidates : [notFoundCandidate(word, lw)];
+    return { raw: word, candidates: ranked };
+  });
 }
