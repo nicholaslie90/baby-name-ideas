@@ -103,6 +103,8 @@ export interface GenerateRequest {
   surname: string;
   gender: Gender;
   slots: SlotConstraint[];
+  /** When true, each slot may fuse 1–2 roots into a single word (samasa style). */
+  fuse?: boolean;
 }
 
 export interface FamiliarRequest {
@@ -139,6 +141,11 @@ export interface GeneratedName {
   elements: NameElement[];
   /** Distinct origins used, in first-seen order. */
   origins: Origin[];
+  /**
+   * Number of roots per word. sum(wordGroups) === elements.length.
+   * Absent => each element is its own word (backward compatible).
+   */
+  wordGroups?: number[];
 }
 
 /** Returned instead of a name when a slot has no matching candidates. */

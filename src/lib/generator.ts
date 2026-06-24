@@ -68,6 +68,37 @@ function distinct<T>(items: T[]): T[] {
   return [...new Set(items)];
 }
 
+const VOWELS = new Set(['a', 'e', 'i', 'o', 'u']);
+
+/** Glue two root texts; drop one of a doubled vowel at the seam (light sandhi). */
+function fuseText(a: string, b: string): string {
+  if (a.length > 0 && b.length > 0) {
+    const last = a[a.length - 1];
+    if (VOWELS.has(last) && last === b[0]) return a + b.slice(1);
+  }
+  return a + b;
+}
+
+/**
+ * Decide which words fuse (2 roots) vs stay single (1 root). When `fuse` is on,
+ * each slot whose pool has >= 2 candidates fuses with 50% chance, and at least
+ * one eligible slot is guaranteed to fuse. Returns a boolean per slot.
+ */
+function decideFusion(
+  bases: NameElement[][],
+  fuse: boolean,
+  rng: () => number,
+): boolean[] {
+  const flags = bases.map(() => false);
+  if (!fuse) return flags;
+  const eligible: number[] = [];
+  for (let i = 0; i < bases.length; i++) if (bases[i].length >= 2) eligible.push(i);
+  if (eligible.length === 0) return flags;
+  for (const i of eligible) flags[i] = rng() < 0.5;
+  if (!eligible.some((i) => flags[i])) flags[eligible[0]] = true;
+  return flags;
+}
+
 /**
  * Assemble a name from the candidate pool according to the per-slot
  * constraints. Returns a typed error (not a throw) when a slot matches nothing,
@@ -79,22 +110,47 @@ export function generateName(
   rng: () => number = defaultRng(),
 ): GenerateResult {
   const total = req.slots.length;
-  const chosen: NameElement[] = [];
 
+  // Phase 1: resolve each slot's candidate pool up front.
+  const bases: NameElement[][] = [];
   for (let i = 0; i < total; i++) {
-    const slot = req.slots[i];
-    const base = pool.filter((e) => matchesGender(e, req.gender) && matchesSlot(e, slot));
-    if (base.length === 0) {
-      return { error: 'empty-pool', slotIndex: i };
-    }
-    chosen.push(pick(preferByPosition(base, i, total), rng));
+    const base = pool.filter((e) => matchesGender(e, req.gender) && matchesSlot(e, req.slots[i]));
+    if (base.length === 0) return { error: 'empty-pool', slotIndex: i };
+    bases.push(base);
   }
 
-  // Each slot becomes its own capitalized word, e.g. ["nur","wira"] -> "Nur Wira".
-  const name = chosen.map((e) => capitalize(cleanup(e.text))).join(' ');
-  const origins: Origin[] = distinct(chosen.map((e) => e.origin));
+  // Phase 2: decide which words fuse.
+  const fuseFlags = decideFusion(bases, !!req.fuse, rng);
 
-  return { name, surname: req.surname.trim(), elements: chosen, origins };
+  // Phase 3: build each word.
+  const chosen: NameElement[] = [];
+  const wordGroups: number[] = [];
+  const words: string[] = [];
+  for (let i = 0; i < total; i++) {
+    const base = bases[i];
+    if (fuseFlags[i]) {
+      // First root avoids suffix-only; second avoids prefix-only (positions of a 2-slot word).
+      const a = pick(preferByPosition(base, 0, 2), rng);
+      const rest = base.filter((e) => e.id !== a.id);
+      const b = pick(preferByPosition(rest, 1, 2), rng);
+      chosen.push(a, b);
+      words.push(capitalize(cleanup(fuseText(a.text, b.text))));
+      wordGroups.push(2);
+    } else {
+      const el = pick(preferByPosition(base, i, total), rng);
+      chosen.push(el);
+      words.push(capitalize(cleanup(el.text)));
+      wordGroups.push(1);
+    }
+  }
+
+  return {
+    name: words.join(' '),
+    surname: req.surname.trim(),
+    elements: chosen,
+    origins: distinct(chosen.map((e) => e.origin)),
+    wordGroups,
+  };
 }
 
 /** Split a meaning query ("joy, happy, glee") into lowercase, non-empty terms. */
