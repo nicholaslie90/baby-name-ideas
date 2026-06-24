@@ -1,4 +1,4 @@
-import { ORIGIN_LABELS, type GeneratedName, type Origin } from '../types';
+import { ORIGIN_LABELS, type GeneratedName, type NameElement, type Origin } from '../types';
 
 interface Bilingual {
   id: string;
@@ -6,9 +6,14 @@ interface Bilingual {
 }
 
 /**
- * Compose a bilingual meaning from the chosen words. Each word's meaning is
- * shown in order, separated by a middot — readable for multi-word names and
- * safe for English-only glosses.
+ * Compose a bilingual meaning from the chosen words. Words are separated by a
+ * middot (·). For each word:
+ * - A single-root word keeps its full gloss (all comma-listed senses).
+ * - A fused word (multiple roots joined per `wordGroups`) joins each root's
+ *   first sense with a hyphen and capitalizes the result once
+ *   (e.g. "Kebajikan-kebenaran").
+ * Any elements beyond the `wordGroups` sum are appended as their own
+ * single-root words.
  */
 export function composeMeaning(g: GeneratedName): Bilingual {
   const groups = g.wordGroups ?? g.elements.map(() => 1);
@@ -25,16 +30,16 @@ export function composeMeaning(g: GeneratedName): Bilingual {
     idx += 1;
   }
 
-  const render = (lang: 'id' | 'en'): string =>
-    words
-      .map((w) =>
-        w.length === 1
-          ? capitalize(w[0].meaning[lang])
-          : [capitalize(firstSense(w[0].meaning[lang])), ...w.slice(1).map((e) => firstSense(e.meaning[lang]))].join('-'),
-      )
-      .join(' · ');
+  return {
+    id: words.map((w) => renderWord(w, 'id')).join(' · '),
+    en: words.map((w) => renderWord(w, 'en')).join(' · '),
+  };
+}
 
-  return { id: render('id'), en: render('en') };
+/** Render one word: a single root keeps its full gloss; a fused word joins each root's first sense with a hyphen, capitalized once. */
+function renderWord(word: NameElement[], lang: 'id' | 'en'): string {
+  if (word.length === 1) return capitalize(word[0].meaning[lang]);
+  return capitalize(word.map((e) => firstSense(e.meaning[lang])).join('-'));
 }
 
 /** The leading sense of a gloss — text before the first comma, trimmed. */

@@ -56,6 +56,19 @@ describe('composeMeaning grouping', () => {
     expect(m.en).toBe('Virtue-righteousness · Victory');
   });
 
+  it('appends overflow elements as their own single-root words', () => {
+    const g: GeneratedName = {
+      name: 'Guna Dharma Wijaya',
+      surname: '',
+      elements: [guna, dharma, wijaya],
+      origins: ['sanskerta'],
+      wordGroups: [1],
+    };
+    const m = composeMeaning(g);
+    expect(m.id).toBe('Kebajikan, kebaikan · Kebenaran, kewajiban · Kemenangan');
+    expect(m.en).toBe('Virtue, merit · Righteousness, duty · Victory');
+  });
+
   it('keeps the full gloss for single-root words (all-1 groups)', () => {
     const g: GeneratedName = {
       name: 'Guna Wijaya',
