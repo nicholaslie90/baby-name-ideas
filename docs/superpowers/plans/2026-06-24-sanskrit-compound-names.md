@@ -311,7 +311,7 @@ export function composeMeaning(g: GeneratedName): Bilingual {
       .map((w) =>
         w.length === 1
           ? capitalize(w[0].meaning[lang])
-          : w.map((e) => capitalize(firstSense(e.meaning[lang]))).join('-'),
+          : capitalize(w.map((e) => firstSense(e.meaning[lang])).join('-')),
       )
       .join(' · ');
 
