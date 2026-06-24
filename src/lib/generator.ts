@@ -1,6 +1,7 @@
 import type {
   CommonName,
   FamiliarRequest,
+  GeneratedName,
   GenerateRequest,
   GenerateResult,
   MeaningRequest,
@@ -550,4 +551,25 @@ export function analyzeNameCandidates(
     const ranked = capped.length > 0 ? capped : [notFoundCandidate(word, lw)];
     return { raw: word, candidates: ranked };
   });
+}
+
+export function buildAnalyzedName(
+  words: WordAnalysis[],
+  selections: number[],
+  surname: string,
+): GeneratedName | null {
+  if (words.length === 0) return null;
+  const chosen = words.map((w, i) => {
+    const sel = selections[i] ?? 0;
+    return w.candidates[sel] ?? w.candidates[0];
+  });
+  const elements = chosen.flatMap((c) => c.elements);
+  const wordGroups = chosen.map((c) => Math.max(1, c.elements.length));
+  return {
+    name: words.map((w) => w.raw).join(' '),
+    surname: surname.trim(),
+    elements,
+    origins: distinct(elements.map((e) => e.origin)),
+    wordGroups,
+  };
 }
