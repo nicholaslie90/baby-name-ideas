@@ -57,5 +57,5 @@ export async function downloadPdf(node: HTMLElement, filename: string): Promise<
 /** Build a filesystem-safe filename from the name + surname. */
 export function exportFilename(name: string, surname: string): string {
   const raw = [name, surname].filter(Boolean).join('-');
-  return raw.replace(/[^a-z0-9-]+/gi, '-').replace(/-+/g, '-').toLowerCase() || 'nama-bayi';
+  return raw.replace(/[^a-z0-9-]+/gi, '-').replace(/-+/g, '-').toLowerCase() || 'nama';
 }

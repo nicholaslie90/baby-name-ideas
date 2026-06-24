@@ -1,6 +1,6 @@
-# Generator Nama Bayi · Baby Name Generator
+# Generator Nama · Name Generator
 
-A fully client-side baby-name generator that **assembles** names from etymological
+A fully client-side name generator that **assembles** names from etymological
 roots, composes a **bilingual meaning** (Indonesian + English), and renders the
 result into a beautiful, downloadable **frame ("pigura")** you can save as a
 **hi-res PNG** or **PDF**. No backend — it runs entirely in the browser and
@@ -87,6 +87,6 @@ dataset test enforces the schema.
 1. Push to `main`. The workflow in `.github/workflows/deploy.yml` runs tests,
    builds, and publishes `dist/` to Pages.
 2. In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. The site is served at `https://<user>.github.io/baby-name-ideas/`.
+3. The site is served at `https://<user>.github.io/name-generator/`.
 
 If you fork to a different repo name, update `base` in `vite.config.ts` to match.

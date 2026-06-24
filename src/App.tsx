@@ -175,7 +175,7 @@ export default function App() {
   return (
     <div className="app">
       <header className="app__header">
-        <h1 className="app__title">Generator Nama Bayi</h1>
+        <h1 className="app__title">Generator Nama</h1>
         <p className="app__subtitle">
           Rangkai nama bermakna dari akar etimologi · Craft a meaningful name from etymological roots
         </p>
