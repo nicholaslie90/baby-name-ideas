@@ -97,8 +97,12 @@ perilaku tidak berubah.
 - Berlaku untuk kedua bahasa (`id` dan `en`) secara konsisten.
 
 Contoh keluaran *Gunadharma Wijaya Wangsa*:
-- ID: `Kebajikan-kebenaran · Kemenangan · Keturunan`
-- EN: `Virtue-righteousness · Victory · Lineage`
+- ID: `Kebajikan-kebenaran · Kemenangan · Keturunan, dinasti`
+- EN: `Virtue-righteousness · Victory · Lineage, dynasty`
+
+(Catatan: `wangsa` adalah kata ber-akar-tunggal sehingga mempertahankan gloss
+penuh `keturunan, dinasti`; hanya kata leburan seperti `Gunadharma` yang
+diringkas ke makna pertama.)
 
 ### 4. Kosakata (`src/data/elements.sanskerta.json`)
 

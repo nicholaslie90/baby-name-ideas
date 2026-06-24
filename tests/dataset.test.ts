@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { ELEMENTS, COMMON_NAMES } from '../src/data';
 import { ORIGINS, ELEMENT_ORIGINS } from '../src/types';
+import sanskerta from '../src/data/elements.sanskerta.json';
 
 const GENDERS = ['L', 'P', 'N'];
 const POSITIONS = ['prefix', 'suffix', 'any'];
@@ -85,5 +86,36 @@ describe('common-names dataset', () => {
     expect(COMMON_NAMES.some((n) => n.name === 'Ali' && n.islamic)).toBe(true);
     expect(islamic.some((n) => n.gender === 'L')).toBe(true);
     expect(islamic.some((n) => n.gender === 'P')).toBe(true);
+  });
+});
+
+describe('enriched sanskerta vocabulary', () => {
+  it('has at least 80 roots', () => {
+    expect(sanskerta.length).toBeGreaterThanOrEqual(80);
+  });
+
+  it('includes the roots used by Gunadharma Wijaya Wangsa', () => {
+    const texts = new Set(sanskerta.map((e: any) => e.text));
+    for (const t of ['guna', 'dharma', 'wangsa', 'wijaya']) {
+      expect(texts.has(t)).toBe(true);
+    }
+  });
+
+  it('every root has the required shape with non-empty bilingual meanings', () => {
+    for (const e of sanskerta as any[]) {
+      expect(e.id).toMatch(/^sa-/);
+      expect(typeof e.text).toBe('string');
+      expect(e.text.length).toBeGreaterThan(0);
+      expect(e.initial).toBe(e.text[0]);
+      expect(e.origin).toBe('sanskerta');
+      expect(['L', 'P', 'N']).toContain(e.gender);
+      expect(e.meaning.id.trim().length).toBeGreaterThan(0);
+      expect(e.meaning.en.trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  it('has no duplicate texts', () => {
+    const texts = sanskerta.map((e: any) => e.text);
+    expect(new Set(texts).size).toBe(texts.length);
   });
 });

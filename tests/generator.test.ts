@@ -63,3 +63,70 @@ describe('generateName', () => {
     expect(a.name).toBe(b.name);
   });
 });
+
+describe('generateName fusion', () => {
+  it('fuses at least one word into 2 roots when fuse is on', () => {
+    const r = generateName(
+      { surname: '', gender: 'N', slots: [{}, {}, {}], fuse: true },
+      POOL,
+      makeRng(7),
+    );
+    const g = r as GeneratedName;
+    expect(isGenerateError(r)).toBe(false);
+    // wordGroups sums to the number of elements, one entry per word.
+    expect(g.wordGroups!.reduce((a, b) => a + b, 0)).toBe(g.elements.length);
+    expect(g.wordGroups).toContain(2);
+    // A fused name has fewer space-separated words than roots.
+    const words = g.name.split(' ');
+    expect(words.length).toBe(g.wordGroups!.length);
+    expect(g.elements.length).toBeGreaterThan(words.length);
+  });
+
+  it('collapses a repeated vowel at the fusion seam', () => {
+    // 'luna' (ends 'a') + 'adi'-like... use a pool guaranteeing an a|a seam.
+    const seamPool: NameElement[] = [
+      { id: 'x1', text: 'wira', initial: 'w', origin: 'sanskerta', gender: 'N', meaning: { id: 'berani', en: 'brave' } },
+      { id: 'x2', text: 'adi', initial: 'a', origin: 'sanskerta', gender: 'N', meaning: { id: 'utama', en: 'first' } },
+    ];
+    const r = generateName(
+      { surname: '', gender: 'N', slots: [{}], fuse: true },
+      seamPool,
+      makeRng(1),
+    );
+    const g = r as GeneratedName;
+    // Fused word should be 'Wiradi' (one 'a' dropped), never 'Wiraadi'.
+    expect(g.wordGroups).toEqual([2]);
+    expect(g.name.toLowerCase()).toContain('wiradi');
+    expect(g.name).not.toMatch(/aa/i);
+  });
+
+  it('emits all-1 wordGroups and never fuses when fuse is off', () => {
+    const r = generateName({ surname: '', gender: 'N', slots: [{}, {}], fuse: false }, POOL, makeRng(7));
+    const g = r as GeneratedName;
+    expect(g.wordGroups).toEqual([1, 1]);
+    expect(g.elements).toHaveLength(2);
+  });
+
+  it('falls back to a single root when a slot pool has fewer than 2 candidates', () => {
+    const tiny: NameElement[] = [
+      { id: 'o1', text: 'luna', initial: 'l', origin: 'latin', gender: 'N', meaning: { id: 'bulan', en: 'moon' } },
+    ];
+    const r = generateName({ surname: '', gender: 'N', slots: [{}], fuse: true }, tiny, makeRng(3));
+    const g = r as GeneratedName;
+    expect(g.wordGroups).toEqual([1]);
+    expect(g.elements).toHaveLength(1);
+  });
+
+  it('respects position hints inside a fused word', () => {
+    const posPool: NameElement[] = [
+      { id: 'p1', text: 'dewa', initial: 'd', origin: 'sanskerta', gender: 'N', position: 'prefix', meaning: { id: 'dewa', en: 'god' } },
+      { id: 'p2', text: 'wati', initial: 'w', origin: 'sanskerta', gender: 'N', position: 'suffix', meaning: { id: 'perempuan', en: 'woman' } },
+    ];
+    const r = generateName({ surname: '', gender: 'N', slots: [{}], fuse: true }, posPool, makeRng(5));
+    const g = r as GeneratedName;
+    expect(g.wordGroups).toEqual([2]);
+    // First root must not be the suffix-only one; second must not be the prefix-only one.
+    expect(g.elements[0].position).not.toBe('suffix');
+    expect(g.elements[1].position).not.toBe('prefix');
+  });
+});

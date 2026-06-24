@@ -37,3 +37,49 @@ describe('composeEtymology', () => {
     expect(e.en).toContain('Sanskrit');
   });
 });
+
+describe('composeMeaning grouping', () => {
+  const guna: NameElement = { id: 'g', text: 'guna', initial: 'g', origin: 'sanskerta', gender: 'N', meaning: { id: 'kebajikan, kebaikan', en: 'virtue, merit' } };
+  const dharma: NameElement = { id: 'd', text: 'dharma', initial: 'd', origin: 'sanskerta', gender: 'N', meaning: { id: 'kebenaran, kewajiban', en: 'righteousness, duty' } };
+  const wijaya: NameElement = { id: 'w', text: 'wijaya', initial: 'w', origin: 'sanskerta', gender: 'L', meaning: { id: 'kemenangan', en: 'victory' } };
+
+  it('joins fused roots with a hyphen (first sense) and words with a middot', () => {
+    const g: GeneratedName = {
+      name: 'Gunadharma Wijaya',
+      surname: '',
+      elements: [guna, dharma, wijaya],
+      origins: ['sanskerta'],
+      wordGroups: [2, 1],
+    };
+    const m = composeMeaning(g);
+    expect(m.id).toBe('Kebajikan-kebenaran · Kemenangan');
+    expect(m.en).toBe('Virtue-righteousness · Victory');
+  });
+
+  it('appends overflow elements as their own single-root words', () => {
+    const g: GeneratedName = {
+      name: 'Guna Dharma Wijaya',
+      surname: '',
+      elements: [guna, dharma, wijaya],
+      origins: ['sanskerta'],
+      wordGroups: [1],
+    };
+    const m = composeMeaning(g);
+    expect(m.id).toBe('Kebajikan, kebaikan · Kebenaran, kewajiban · Kemenangan');
+    expect(m.en).toBe('Virtue, merit · Righteousness, duty · Victory');
+  });
+
+  it('keeps the full gloss for single-root words (all-1 groups)', () => {
+    const g: GeneratedName = {
+      name: 'Guna Wijaya',
+      surname: '',
+      elements: [guna, wijaya],
+      origins: ['sanskerta'],
+      wordGroups: [1, 1],
+    };
+    const m = composeMeaning(g);
+    // Single-root words keep the comma-listed senses, not just the first.
+    expect(m.id).toBe('Kebajikan, kebaikan · Kemenangan');
+    expect(m.en).toBe('Virtue, merit · Victory');
+  });
+});

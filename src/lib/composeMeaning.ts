@@ -1,4 +1,4 @@
-import { ORIGIN_LABELS, type GeneratedName, type Origin } from '../types';
+import { ORIGIN_LABELS, type GeneratedName, type NameElement, type Origin } from '../types';
 
 interface Bilingual {
   id: string;
@@ -6,19 +6,46 @@ interface Bilingual {
 }
 
 /**
- * Compose a bilingual meaning from the chosen words. Each word's meaning is
- * shown in order, separated by a middot — readable for multi-word names and
- * safe for English-only glosses.
+ * Compose a bilingual meaning from the chosen words. Words are separated by a
+ * middot (·). For each word:
+ * - A single-root word keeps its full gloss (all comma-listed senses).
+ * - A fused word (multiple roots joined per `wordGroups`) joins each root's
+ *   first sense with a hyphen and capitalizes the result once
+ *   (e.g. "Kebajikan-kebenaran").
+ * Any elements beyond the `wordGroups` sum are appended as their own
+ * single-root words.
  */
 export function composeMeaning(g: GeneratedName): Bilingual {
-  const idParts = g.elements.map((e) => capitalize(e.meaning.id));
-  const enParts = g.elements.map((e) => capitalize(e.meaning.en));
+  const groups = g.wordGroups ?? g.elements.map(() => 1);
 
-  if (g.elements.length === 1) {
-    return { id: idParts[0], en: enParts[0] };
+  // Chunk elements into words per `groups`; any leftover becomes its own word.
+  const words: GeneratedName['elements'][] = [];
+  let idx = 0;
+  for (const n of groups) {
+    words.push(g.elements.slice(idx, idx + n));
+    idx += n;
+  }
+  while (idx < g.elements.length) {
+    words.push([g.elements[idx]]);
+    idx += 1;
   }
 
-  return { id: idParts.join(' · '), en: enParts.join(' · ') };
+  return {
+    id: words.map((w) => renderWord(w, 'id')).join(' · '),
+    en: words.map((w) => renderWord(w, 'en')).join(' · '),
+  };
+}
+
+/** Render one word: a single root keeps its full gloss; a fused word joins each root's first sense with a hyphen, capitalized once. */
+function renderWord(word: NameElement[], lang: 'id' | 'en'): string {
+  if (word.length === 1) return capitalize(word[0].meaning[lang]);
+  return capitalize(word.map((e) => firstSense(e.meaning[lang])).join('-'));
+}
+
+/** The leading sense of a gloss — text before the first comma, trimmed. */
+function firstSense(s: string): string {
+  const i = s.indexOf(',');
+  return (i >= 0 ? s.slice(0, i) : s).trim();
 }
 
 /** A bilingual etymology line naming the distinct origins used. */

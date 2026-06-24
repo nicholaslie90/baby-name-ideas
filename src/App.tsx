@@ -63,7 +63,7 @@ export default function App() {
       return analyzeName(form.ownName ?? '', COMMON_NAMES, ELEMENTS);
     }
     return generateName(
-      { surname: form.surname, gender: form.gender, slots: form.slots.slice(0, wordCount) },
+      { surname: form.surname, gender: form.gender, slots: form.slots.slice(0, wordCount), fuse: form.fuse },
       ELEMENTS,
     );
   }

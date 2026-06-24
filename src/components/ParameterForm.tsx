@@ -28,6 +28,8 @@ export interface FormState {
   meaningQuery?: string;
   /** Familiar/meaning modes: force all words to share one etymology. */
   sameOrigin?: boolean;
+  /** Composed-mode: fuse 1–2 roots into a single word (samasa style). */
+  fuse?: boolean;
   /** Analyze-mode: the name the user typed to look up. */
   ownName?: string;
 }
@@ -309,6 +311,32 @@ export default function ParameterForm({ value, onChange, onGenerate }: Props) {
                 Samakan: {ORIGIN_LABELS[o].id}
               </button>
             ))}
+          </div>
+          <div className="field">
+            <span className="field__label">
+              Gaya kata <span className="field__hint">/ Word style</span>
+            </span>
+            <div className="segmented">
+              <button
+                type="button"
+                aria-pressed={!value.fuse}
+                onClick={() => onChange({ ...value, fuse: false })}
+              >
+                Pisah
+              </button>
+              <button
+                type="button"
+                aria-pressed={!!value.fuse}
+                onClick={() => onChange({ ...value, fuse: true })}
+              >
+                Lebur
+              </button>
+            </div>
+            <p className="field__hint" style={{ marginTop: '0.35rem' }}>
+              {value.fuse
+                ? 'Lebur akar jadi satu kata, mis. Gunadharma · fuse roots into one word'
+                : 'Tiap kata satu akar · one root per word'}
+            </p>
           </div>
         </div>
       )}
