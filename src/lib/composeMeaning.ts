@@ -43,7 +43,7 @@ function renderWord(word: NameElement[], lang: 'id' | 'en'): string {
 }
 
 /** The leading sense of a gloss — text before the first comma, trimmed. */
-function firstSense(s: string): string {
+export function firstSense(s: string): string {
   const i = s.indexOf(',');
   return (i >= 0 ? s.slice(0, i) : s).trim();
 }

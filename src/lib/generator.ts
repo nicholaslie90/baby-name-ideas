@@ -9,6 +9,7 @@ import type {
   SlotConstraint,
 } from '../types';
 import { expandTerms } from './synonyms';
+import { firstSense } from './composeMeaning';
 
 /** Deterministic PRNG (mulberry32) so a fixed seed yields repeatable names. */
 export function makeRng(seed: number): () => number {
@@ -407,6 +408,35 @@ export function analyzeName(
 
 export const MAX_CANDIDATES_PER_WORD = 6;
 export const FUZZY_MAX_DISTANCE = 2;
+export const MAX_ROOT_DECOMPOSITIONS = 3;
+
+/** Build up to N root decompositions of a word: greedy, plus alternatives that start at each distinct prefix root. */
+function rootDecompositions(word: string, elements: NameElement[]): NameElement[][] {
+  const results: NameElement[][] = [];
+  const push = (split: NameElement[]) => {
+    if (split.length === 0) return;
+    const key = split.map((e) => e.id).join('+');
+    if (!results.some((r) => r.map((e) => e.id).join('+') === key)) results.push(split);
+  };
+  push(findRoots(word, elements)); // greedy
+  const prefixRoots = elements
+    .filter((e) => e.text.length >= 3 && word.startsWith(e.text))
+    .sort((a, b) => b.text.length - a.text.length);
+  for (const first of prefixRoots) {
+    push([first, ...findRoots(word.slice(first.text.length), elements)]);
+    if (results.length >= MAX_ROOT_DECOMPOSITIONS) break;
+  }
+  return results.slice(0, MAX_ROOT_DECOMPOSITIONS);
+}
+
+/** Summary gloss for a candidate's elements: single root keeps its full gloss; multiple roots join leading senses with a hyphen. */
+function combinedMeaning(elements: NameElement[]): { id: string; en: string } {
+  if (elements.length === 1) return elements[0].meaning;
+  return {
+    id: elements.map((e) => firstSense(e.meaning.id)).join('-'),
+    en: elements.map((e) => firstSense(e.meaning.en)).join('-'),
+  };
+}
 
 /** Normalize a name/word for matching: lowercase, strip non-letters. */
 function normalizeName(s: string): string {
@@ -441,7 +471,7 @@ function notFoundCandidate(word: string, lw: string): MeaningCandidate {
 }
 
 function candidateKey(c: MeaningCandidate): string {
-  return `${c.displayName.toLowerCase()}|${c.origins.join(',')}|${c.meaning.id}|${c.meaning.en}`;
+  return `${c.displayName.toLowerCase()}|${[...c.origins].sort().join(',')}|${c.meaning.id}|${c.meaning.en}`;
 }
 
 export function analyzeNameCandidates(
@@ -489,7 +519,20 @@ export function analyzeNameCandidates(
       }
     }
 
-    // Rank: exact -> fuzzy(asc distance) -> root; dedup; (cap added in Task 4).
+    // (3) Root decompositions (one candidate per distinct split).
+    if (lw) {
+      for (const split of rootDecompositions(lw, elements)) {
+        candidates.push({
+          kind: 'root',
+          displayName: word,
+          elements: split,
+          meaning: combinedMeaning(split),
+          origins: distinct(split.map((e) => e.origin)),
+        });
+      }
+    }
+
+    // Rank: exact -> fuzzy(asc distance) -> root; dedup; cap.
     const kindRank = { exact: 0, fuzzy: 1, root: 2 } as const;
     candidates.sort((a, b) => {
       if (kindRank[a.kind] !== kindRank[b.kind]) return kindRank[a.kind] - kindRank[b.kind];
@@ -503,7 +546,8 @@ export function analyzeNameCandidates(
       return true;
     });
 
-    const ranked = deduped.length > 0 ? deduped : [notFoundCandidate(word, lw)];
+    const capped = deduped.slice(0, MAX_CANDIDATES_PER_WORD);
+    const ranked = capped.length > 0 ? capped : [notFoundCandidate(word, lw)];
     return { raw: word, candidates: ranked };
   });
 }

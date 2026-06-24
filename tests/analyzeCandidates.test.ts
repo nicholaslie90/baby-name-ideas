@@ -85,3 +85,29 @@ describe('analyzeNameCandidates — fuzzy', () => {
     expect(w.candidates).toHaveLength(1);
   });
 });
+
+describe('analyzeNameCandidates — roots + cap', () => {
+  const ROOTS: NameElement[] = [
+    { id: 'r-nur', text: 'nur', initial: 'n', origin: 'arab', gender: 'N', meaning: { id: 'cahaya', en: 'light' } },
+    { id: 'r-alia', text: 'alia', initial: 'a', origin: 'arab', gender: 'P', meaning: { id: 'mulia, tinggi', en: 'noble, exalted' } },
+  ];
+
+  it('decomposes an unknown word into known roots as a single candidate', () => {
+    const [w] = analyzeNameCandidates('Nuralia', [], ROOTS);
+    const root = w.candidates.find((c) => c.kind === 'root');
+    expect(root).toBeDefined();
+    expect(root!.elements.map((e) => e.id)).toEqual(['r-nur', 'r-alia']);
+    // summary gloss joins leading senses with a hyphen
+    expect(root!.meaning.id).toBe('cahaya-mulia');
+    expect(root!.meaning.en).toBe('light-noble');
+  });
+
+  it('caps candidates per word at MAX_CANDIDATES_PER_WORD (6)', () => {
+    const many = Array.from({ length: 10 }, (_, i) => ({
+      id: `n${i}`, name: 'Marcus', initial: 'm', syllables: 2, origin: 'latin', gender: 'L',
+      meaning: { id: `arti ${i}`, en: `meaning ${i}` },
+    })) as CommonName[];
+    const [w] = analyzeNameCandidates('Marcus', many, []);
+    expect(w.candidates.length).toBeLessThanOrEqual(6);
+  });
+});
