@@ -32,67 +32,8 @@ body {
 }
 
 .app {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 2rem 1.25rem 4rem;
-}
-
-.app__header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.app__title {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 700;
-  margin: 0;
-  color: var(--ink);
-}
-
-.app__subtitle {
-  color: var(--muted);
-  margin: 0.35rem 0 0;
-  font-size: 1rem;
-}
-
-.layout {
-  display: grid;
-  grid-template-columns: minmax(300px, 380px) 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-
-@media (max-width: 860px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ---- Phones ---- */
-@media (max-width: 560px) {
-  .app {
-    padding: 1.25rem 0.85rem 3rem;
-  }
-
-  .panel {
-    padding: 1.1rem;
-  }
-
-  /* Smaller, tighter nav arrows leave more room for the frame between them. */
-  .result__stage {
-    gap: 0.3rem;
-  }
-
-  .navarrow {
-    width: 38px;
-    height: 38px;
-    font-size: 1.3rem;
-  }
-
-  .result__actions {
-    gap: 0.4rem;
-  }
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .panel {
@@ -249,12 +190,6 @@ select:focus {
   cursor: not-allowed;
 }
 
-.result {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
-}
 
 .style-switch {
   display: flex;
@@ -280,53 +215,6 @@ select:focus {
   border-color: var(--ink);
 }
 
-.result__stage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-}
-
-.navarrow {
-  flex: 0 0 auto;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: #fff;
-  color: var(--ink);
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow);
-  transition: background 0.15s ease, transform 0.1s ease;
-}
-
-.navarrow:hover:not(:disabled) {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
-.navarrow:active:not(:disabled) {
-  transform: scale(0.94);
-}
-
-.navarrow:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
-.result__counter {
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  color: var(--muted);
-  text-align: center;
-}
 
 .notice {
   margin: 0;
@@ -340,13 +228,6 @@ select:focus {
   padding: 0.6rem 0.85rem;
 }
 
-.result__actions {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  width: 100%;
-}
 
 /* Compact, label-free icon buttons sitting on a single row. */
 .btn--icon {
@@ -372,12 +253,6 @@ select:focus {
   padding: 2rem 1rem;
 }
 
-.app__footer {
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.78rem;
-  margin-top: 2.5rem;
-}
 
 /* Analyze mode: per-word candidate chip wrappers */
 .candidates { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; width: 100%; }
@@ -388,3 +263,142 @@ select:focus {
 .candidates .chip--on { border-color: var(--accent); background: rgba(176, 141, 87, 0.12); }
 .candidates .chip__meaning { font-size: 0.85rem; }
 .candidates .chip__origin { font-size: 0.7rem; opacity: 0.6; }
+
+/* ---- Deck: full-viewport, centered, no scroll ---- */
+.deck {
+  position: relative;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  outline: none;
+}
+
+.deck__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 480px;
+}
+
+.deck__card {
+  /* Fit within both axes: width is capped by the viewport height (frame is 4:5,
+     so width = 0.8 * height) and by the viewport width. */
+  width: min(480px, 92vw, calc((100dvh - 4rem) * 0.8));
+  touch-action: pan-y;
+  cursor: grab;
+  transition: transform 0.25s ease;
+  animation: card-in 0.3s ease;
+}
+
+.deck__card.is-dragging {
+  transition: none;
+  cursor: grabbing;
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+.deck__customize {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  z-index: 2;
+}
+
+.deck__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(255, 253, 250, 0.7);
+  color: var(--ink);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  z-index: 2;
+}
+
+.deck__arrow--left { left: 0.5rem; }
+.deck__arrow--right { right: 0.5rem; }
+.deck__arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.deck__error { max-width: 380px; }
+.deck__error .btn { margin-top: 0.75rem; }
+.deck__notice { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); }
+
+/* ---- Modal ---- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(40, 30, 18, 0.45);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.modal {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+}
+
+.modal__close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.customize > .panel { box-shadow: none; border: none; padding: 0; }
+.customize__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* ---- Phones ---- */
+@media (max-width: 560px) {
+  .deck__arrow { width: 38px; height: 38px; font-size: 1.3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck__card { transition: none; animation: none; }
+}
