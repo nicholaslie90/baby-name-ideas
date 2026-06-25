@@ -231,6 +231,10 @@ export default function App() {
           form={form}
           onFormChange={setForm}
           onGenerate={generate}
+          onShuffle={() => {
+            generate();
+            setModalOpen(false);
+          }}
           style={style}
           onStyleChange={setStyle}
           nameFont={nameFont}

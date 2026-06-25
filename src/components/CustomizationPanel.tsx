@@ -11,6 +11,8 @@ interface CustomizationPanelProps {
   form: FormState;
   onFormChange: (next: FormState) => void;
   onGenerate: () => void;
+  /** Re-roll a fresh name with the current settings AND close the modal. */
+  onShuffle: () => void;
   style: FrameStyle;
   onStyleChange: (style: FrameStyle) => void;
   nameFont: NameFontId;
@@ -28,6 +30,7 @@ export default function CustomizationPanel({
   form,
   onFormChange,
   onGenerate,
+  onShuffle,
   style,
   onStyleChange,
   nameFont,
@@ -81,6 +84,14 @@ export default function CustomizationPanel({
           </button>
         )}
       </div>
+
+      {/* Re-roll with current settings and close the modal so the new name is
+          visible on the card (especially on mobile, where the modal covers it). */}
+      {!analyzeMode && (
+        <button type="button" className="btn btn--primary customize__shuffle" onClick={onShuffle}>
+          🎲 Nama lain · Shuffle
+        </button>
+      )}
     </div>
   );
 }

@@ -13,6 +13,7 @@ function base(over: Partial<React.ComponentProps<typeof CustomizationPanel>> = {
     form: FORM,
     onFormChange: vi.fn(),
     onGenerate: vi.fn(),
+    onShuffle: vi.fn(),
     style: 'elegant' as const,
     onStyleChange: vi.fn(),
     nameFont: 'great-vibes' as const,
@@ -47,6 +48,20 @@ describe('CustomizationPanel', () => {
     expect(screen.getByLabelText('Reset')).toBeInTheDocument();
   });
 
+  it('shows the shuffle button and calls onShuffle when clicked', async () => {
+    const onShuffle = vi.fn();
+    base({ onShuffle });
+    const shuffle = screen.getByRole('button', { name: /Nama lain/i });
+    expect(shuffle).toBeInTheDocument();
+    await userEvent.click(shuffle);
+    expect(onShuffle).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not render the old "Buat Nama · Generate" submit button', () => {
+    base();
+    expect(screen.queryByRole('button', { name: /Buat Nama/i })).not.toBeInTheDocument();
+  });
+
   it('in analyze mode shows candidate chips and hides Reset', async () => {
     const onSelectCandidate = vi.fn();
     base({
@@ -60,6 +75,8 @@ describe('CustomizationPanel', () => {
     expect(chips).toHaveLength(2);
     expect(chips[1]).toHaveAttribute('aria-pressed', 'true');
     expect(screen.queryByLabelText('Reset')).not.toBeInTheDocument();
+    // Shuffle is a no-op in analyze mode, so it is hidden.
+    expect(screen.queryByRole('button', { name: /Nama lain/i })).not.toBeInTheDocument();
     await userEvent.click(chips[0]);
     expect(onSelectCandidate).toHaveBeenCalledWith(0, 0);
   });

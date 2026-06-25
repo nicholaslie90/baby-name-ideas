@@ -370,9 +370,10 @@ export default function ParameterForm({ value, onChange, onGenerate }: Props) {
         </div>
       )}
 
-      <button type="submit" className="btn btn--primary">
-        ✨ Buat Nama · Generate
-      </button>
+      {/* No submit button here: name generation is automatic on filter changes
+          (see App's filterSig effect) and the modal's bottom "Nama lain" button
+          handles explicit re-rolls. The form still submits on Enter. */}
+      <button type="submit" hidden aria-hidden="true" tabIndex={-1} />
     </form>
   );
 }

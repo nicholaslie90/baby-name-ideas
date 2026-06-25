@@ -18,22 +18,29 @@ function openCustomize() {
   if (btn) fireEvent.click(btn);
 }
 
+function closeModal() {
+  if (screen.queryByRole('dialog')) fireEvent.keyDown(document, { key: 'Escape' });
+}
+
 function setWords(count: number) {
+  openCustomize();
   fireEvent.click(screen.getByRole('button', { name: String(count) }));
 }
 
-function clickGenerate() {
-  fireEvent.click(screen.getByRole('button', { name: /Buat Nama/i }));
+function clickNext() {
+  // The next arrow lives on the main view, so the modal must be closed to reach it.
+  closeModal();
+  fireEvent.click(screen.getByLabelText('Nama berikutnya'));
 }
 
 describe('App: word count controls how many words the name has', () => {
   it('generated names have exactly the selected number of words', () => {
     render(<App />);
-    openCustomize();
     for (const count of [2, 3, 4]) {
-      setWords(count);
-      for (let i = 0; i < 6; i++) {
-        clickGenerate();
+      setWords(count); // opens modal, sets count → auto-regenerates once
+      expect(wordCount(), `count=${count}, name="${generatedName()}"`).toBe(count);
+      for (let i = 0; i < 5; i++) {
+        clickNext(); // closes modal, then samples a fresh name with this count
         expect(wordCount(), `count=${count}, name="${generatedName()}"`).toBe(count);
       }
     }
@@ -43,7 +50,6 @@ describe('App: word count controls how many words the name has', () => {
     render(<App />);
     openCustomize();
     setWords(2);
-    clickGenerate();
     expect(wordCount()).toBe(2);
     setWords(4);
     expect(wordCount()).toBe(4);
@@ -56,9 +62,10 @@ describe('App: word count controls how many words the name has', () => {
     openCustomize();
     fireEvent.change(screen.getByPlaceholderText('mis. Santoso'), { target: { value: 'Lie' } });
     setWords(2);
-    clickGenerate();
+    // 1 generated word + surname "Lie" = 2 words total
     expect(wordCount()).toBe(1);
     setWords(3);
+    // auto-regenerates: 2 generated words + surname = 3
     expect(wordCount()).toBe(2);
   });
 
@@ -74,6 +81,18 @@ describe('App: word count controls how many words the name has', () => {
     expect(next.disabled).toBe(false);
     fireEvent.click(next);
     // A new, non-repeating name replaces the first one.
+    expect(generatedName()).not.toBe('');
+    expect(generatedName()).not.toBe(first);
+  });
+
+  it('the Shuffle button generates a new name and closes the modal', () => {
+    render(<App />);
+    const first = generatedName();
+    openCustomize();
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Nama lain/i }));
+    // Modal closes so the new name is visible on the card.
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(generatedName()).not.toBe('');
     expect(generatedName()).not.toBe(first);
   });
