@@ -45,7 +45,7 @@ export default function Deck({
   }
 
   return (
-    <div className="deck" tabIndex={0} onKeyDown={onKeyDown}>
+    <div className="deck" tabIndex={0} onKeyDown={onKeyDown} role="group" aria-label="Kartu nama · Name card">
       <button className="deck__customize" onClick={onOpenCustomize} aria-label="Sesuaikan · Customize">
         ⚙
       </button>

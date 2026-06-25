@@ -190,7 +190,6 @@ select:focus {
   cursor: not-allowed;
 }
 
-
 .style-switch {
   display: flex;
   gap: 0.5rem;
@@ -215,7 +214,6 @@ select:focus {
   border-color: var(--ink);
 }
 
-
 .notice {
   margin: 0;
   max-width: 380px;
@@ -227,7 +225,6 @@ select:focus {
   border-radius: 10px;
   padding: 0.6rem 0.85rem;
 }
-
 
 /* Compact, label-free icon buttons sitting on a single row. */
 .btn--icon {
@@ -318,6 +315,9 @@ select:focus {
   cursor: pointer;
   box-shadow: var(--shadow);
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .deck__arrow {
@@ -335,6 +335,9 @@ select:focus {
   cursor: pointer;
   box-shadow: var(--shadow);
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .deck__arrow--left { left: 0.5rem; }
