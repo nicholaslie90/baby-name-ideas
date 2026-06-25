@@ -282,9 +282,11 @@ select:focus {
 }
 
 .deck__card {
-  /* Fit within both axes: width is capped by the viewport height (frame is 4:5,
-     so width = 0.8 * height) and by the viewport width. */
-  width: min(480px, 92vw, calc((100dvh - 4rem) * 0.8));
+  /* Fill the viewport on both axes: the frame is 4:5, so its width is driven by
+     available height (width = 0.8 * height) and capped by viewport width. On a
+     tall desktop window this grows the pigura to full height; on phones the
+     92vw cap keeps it within the screen. */
+  width: min(92vw, calc((100dvh - 4rem) * 0.8));
   touch-action: pan-y;
   cursor: grab;
   transition: transform 0.25s ease;

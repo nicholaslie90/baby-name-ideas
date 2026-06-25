@@ -9,9 +9,9 @@
 .scale {
   container-type: inline-size;
   width: 100%;
-  max-width: 480px;
-  /* Allow the frame to shrink below its content's intrinsic width inside the
-   * flex stage (between the two nav arrows) on narrow screens. */
+  /* No max-width: the wrapping .deck__card sizes the frame to fill the
+   * viewport (height-driven on desktop, width-capped on phones), and the
+   * cqw-based internal sizing scales the whole design with it. */
   flex: 1 1 auto;
   min-width: 0;
 }
