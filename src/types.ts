@@ -33,7 +33,7 @@ export const ORIGINS: Origin[] = [
  * Origins that have building-block roots in the ELEMENTS dataset — only these
  * are offered in "composed" (per-syllable) mode.
  */
-export const ELEMENT_ORIGINS: Origin[] = ['arab', 'sanskerta', 'latin', 'ibrani', 'yunani', 'jermanik', 'keltik', 'slavia'];
+export const ELEMENT_ORIGINS: Origin[] = ['arab', 'sanskerta', 'latin', 'ibrani', 'yunani', 'jermanik', 'keltik', 'slavia', 'afrika'];
 
 /** Origins offered in "familiar" mode (the full expanded set). */
 export const COMMON_ORIGINS: Origin[] = ORIGINS;
