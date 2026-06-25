@@ -835,8 +835,8 @@ git commit -m "feat: add CustomizationPanel modal body, retire ResultPanel"
 Replace the entire contents of `tests/app.words.test.tsx` with:
 
 ```tsx
-import { describe, it, expect, beforeEach, fireEvent } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from '../src/App';
 import styles from '../src/components/NameFrame.module.css';
 
