@@ -30,9 +30,12 @@ export default function Deck({
   onOpenCustomize,
   frameRef,
 }: DeckProps) {
+  // Flick the card AWAY to the left to advance (= next, like the right arrow);
+  // flick it right to go back (= previous). This inverts the drag direction
+  // relative to the arrow buttons, matching a Tinder-style "throw away" feel.
   const { dx, dragging, handlers } = useSwipe({
-    onSwipeRight: onNext,
-    onSwipeLeft: () => {
+    onSwipeLeft: onNext,
+    onSwipeRight: () => {
       if (canPrev) onPrev();
     },
     disabled: navDisabled,
